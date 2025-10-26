@@ -1,82 +1,104 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Landing — Armando (Prueba)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Armando — Asesoría de copywriting</title>
+  <!-- Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* Preservar selección personalizada */
-    ::selection { background: #0FFC7E; color: #100135; }
-    /* Forzar la fuente Lato en el body */
-    body { font-family: 'Lato', ui-sans-serif, system-ui; }
+    :root{
+      /* Colores de marca */
+      --paper:#ffffff;
+      --ink:#100135;         /* cuerpo */
+      --ink-strong:#000000;  /* énfasis dentro de párrafo */
+      --brand:#640FEA;       /* acentos grandes */
+      --muted:#b8bec4;       /* notas discretas */
+      --highlight:#0FFC7E;   /* selección */
+      /* Tipografía y ritmo */
+      --lh-body:1.75;        /* interlineado cómodo */
+      --lh-head:1.18;        /* interlineado títulos */
+      --max-ch:68ch;         /* ancho de lectura */
+      --s0:1rem; --s1:1.5rem; --s2:2rem; --s3:3rem; /* escala simple de espaciado */
+    }
+    html,body{height:100%}
+    body{
+      margin:0; background:var(--paper); color:var(--ink);
+      font-family:Lato, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility; font-feature-settings:"liga" 1, "kern" 1;
+      hanging-punctuation:first; hyphens:auto;
+    }
+    ::selection{ background:var(--highlight); color:var(--ink); }
+    .container{ max-width:var(--max-ch); margin-inline:auto; padding: calc(var(--s2)) 1.25rem var(--s3); }
+
+    /* Header mínimo con logo */
+    header{ padding: var(--s2) 0 var(--s0); }
+    .logo{ height:32px; width:auto; user-select:none; -webkit-user-drag:none; display:block }
+
+    /* Títulos balanceados para UX de lectura */
+    h1,h2{ text-wrap:balance; letter-spacing:-0.012em; line-height:var(--lh-head); margin:0 }
+    h3{ text-wrap:balance; margin:0 }
+
+    h1{ font-weight:900; color:var(--ink);
+        font-size:clamp(2rem, 3.2vw + 1rem, 3.15rem); margin-top:var(--s0) }
+    h1 .brand{ color:var(--brand); font-weight:inherit }
+
+    h3{ font-weight:700; color:var(--ink-strong);
+        font-size:clamp(1.125rem, 1.3vw + 1rem, 1.75rem); margin-top:var(--s1); line-height:1.35 }
+    h3 .brand{ color:var(--brand); font-weight:800 }
+
+    h2{ font-weight:800; color:var(--ink);
+        font-size:clamp(1.625rem, 2.1vw + 1rem, 2.35rem); margin-top:var(--s3) }
+    h2 .brand{ color:var(--brand); font-weight:inherit }
+
+    /* Prosa: tamaño ligeramente mayor para confort y ritmo controlado */
+    .prose{ margin-top:var(--s1) }
+    .prose p{ margin:0 0 1rem; font-size:clamp(1rem, 0.25vw + 1rem, 1.125rem); line-height:var(--lh-body); }
+    .prose strong{ font-weight:800; color:var(--ink-strong) }
+
+    /* Utilidades mínimas */
+    .u-gap{ margin-top:var(--s2) }
   </style>
 </head>
-<body class="min-h-screen bg-white text-[#100135] antialiased">
-  <!-- Header mínimo con logo (sin navegación, sin botones) -->
-  <main class="min-h-screen bg-white text-[#100135] antialiased selection:bg-[#0FFC7E] selection:text-[#100135]">
-    <header class="mx-auto max-w-[68ch] px-6 pt-8 pb-4">
-      <img
-        src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg"
-        alt="Armando — logo"
-        class="h-8 w-auto select-none"
-        draggable="false"
-      />
-    </header>
+<body>
+  <main>
+    <div class="container">
+      <header>
+        <img class="logo" src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Armando — logo" draggable="false" />
+      </header>
 
-    <!-- Contenido de lectura: SOLO TEXTO -->
-    <section class="mx-auto max-w-[68ch] px-6 pb-16 md:pb-24">
-      <!-- H1 -->
-      <h1 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl text-[#100135]">
-        <span>Te devuelvo tu dinero </span>
-        <span class="text-[#640FEA]">si esta asesoría de copywriting</span>
-        <span> no aumenta tus ganancias</span>
-      </h1>
+      <section aria-label="Portada y promesa">
+        <h1>
+          <span>Te devuelvo tu dinero </span>
+          <span class="brand">si esta asesoría de copywriting</span>
+          <span> no aumenta tus ganancias</span>
+        </h1>
+        <h3>
+          Es claro que las <strong class="brand">ganancias pobres</strong> no solo ponen en riesgo tu negocio, también tu tranquilidad
+        </h3>
+        <div class="prose">
+          <p><strong>La libertad, la paz y el dinero se sustentan en la estrategia.</strong></p>
+          <p>A diferencia de otros copywriters, no busco solo escribir tus textos, si no además darte la <strong>estrategia de marketing</strong> que te dará una vida más próspera… para que la compartas con la gente que importa.</p>
+        </div>
+      </section>
 
-      <!-- H3 -->
-      <h3 class="mt-6 text-xl font-semibold leading-snug text-[#000000] md:text-2xl">
-        Es claro que las <strong class="font-extrabold text-[#640FEA]">ganancias pobres</strong> no solo ponen en riesgo tu negocio, también tu tranquilidad
-      </h3>
-
-      <!-- Párrafos breves y legibles -->
-      <div class="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
-        <p>
-          <strong>Te ayudo a rescatar tu negocio del estancamiento y convertirlo en una máquina de ventas, pero...</strong>
-        </p>
-        <p>
-          A diferencia de otros copywriters, no busco solo escribir tus textos, si no sobre todo darte la <strong class="font-extrabold text-[#000000]">estrategia de marketing adaptada a tu contexto.</strong> A tu campo de batalla.
-        </p>
-      </div>
-
-      <!-- H2 (mismo peso en todo el enunciado) -->
-      <h2 class="mt-12 text-2xl font-extrabold leading-snug tracking-normal text-[#100135] sm:text-3xl md:text-4xl">
-        Las técnicas que utilizo son antiguas (algunos incluso dirían que raras).
-        <span class="block pt-1"> Pero si no te hago ganar más con ellas, te devuelvo tu dinero. <span class="text-[#640FEA]">Sin preguntas</span></span>
-      </h2>
-
-      <!-- Bloque carta -->
-      <div class="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
-        <p class="text-[#000000]"><strong>Estimado emprendedor o empresario:</strong></p>
-
-        <p>
-          Antes de hacerle invertir su valioso tiempo leyendo sobre esta oportunidad, permítame comentarle que <strong class="font-extrabold text-[#000000]">no todos los negocios podrán aplicar</strong> a esta asesoría.
-        </p>
-
-        <p>
-          La razón de esto no es otra que mi <strong class="font-extrabold text-[#000000]">filosofía de trabajo</strong>: no me interesa conseguir muchos clientes, si no <strong class="underline decoration-[#640FEA] underline-offset-4">casos de éxito</strong>.
-        </p>
-
-        <p>
-          Esto significa que solo trabajo con negocios con <strong class="font-extrabold text-[#000000]">productos o servicios de calidad</strong> y con un <strong class="font-extrabold text-[#000000]">valor diferencial</strong>.
-        </p>
-
-        <p>
-          Como dije, me interesa más <strong class="font-extrabold text-[#000000]">garantizar el éxito</strong> de lo que hago antes que tener muchos clientes.
-        </p>
-      </div>
-    </section>
+      <section aria-label="Garantía y filosofía" class="u-gap">
+        <h2>
+          Las técnicas que utilizo son antiguas (algunos incluso dirían que raras).<br>
+          <span>Pero si no te hago ganar más con ellas, te devuelvo tu dinero. </span><span class="brand">Sin preguntas</span>
+        </h2>
+        <div class="prose">
+          <p><strong>Estimado emprendedor o empresario:</strong></p>
+          <p>Antes de hacerle invertir su valioso tiempo leyendo sobre esta oportunidad, permítame comentarle que <strong>no todos los negocios podrán aplicar</strong> a esta asesoría.</p>
+          <p>La razón de esto no es otra que mi <strong>filosofía de trabajo</strong>: no me interesa conseguir muchos clientes, si no <strong><span style="text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; color: var(--brand)">casos de éxito</span></strong>.</p>
+          <p>Esto significa que solo trabajo con negocios con <strong>productos o servicios de calidad</strong> y con un <strong>valor diferencial</strong>.</p>
+          <p>Como dije, me interesa más <strong>garantizar el éxito</strong> de lo que hago antes que tener muchos clientes.</p>
+        </div>
+      </section>
+    </div>
   </main>
 </body>
 </html>
-}
