@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
   <title>Armando — Asesoría de copywriting</title>
   <!-- Lato -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +30,7 @@
       font-family:Lato, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
       text-rendering:optimizeLegibility; font-feature-settings:"liga" 1, "kern" 1;
-      hanging-punctuation:first; hyphens:auto;
+      hanging-punctuation:first; hyphens:auto; word-break:normal;
     }
     ::selection{ background:var(--highlight); color:var(--ink); }
     .container{ max-width:var(--max-ch); margin-inline:auto; padding: calc(var(--s2)) 1.25rem var(--s3); }
@@ -56,11 +57,38 @@
 
     /* Prosa: tamaño ligeramente mayor para confort y ritmo controlado */
     .prose{ margin-top:var(--s1) }
-    .prose p{ margin:0 0 1rem; font-size:clamp(1rem, 0.25vw + 1rem, 1.125rem); line-height:var(--lh-body); }
+    .prose p{ margin:0 0 1rem; font-size:clamp(1rem, 0.25vw + 1rem, 1.125rem); line-height:var(--lh-body); text-wrap:pretty; }
     .prose strong{ font-weight:800; color:var(--ink-strong) }
 
     /* Utilidades mínimas */
     .u-gap{ margin-top:var(--s2) }
+
+    /* -------- Responsive móvil -------- */
+    @media (max-width: 480px){
+      :root{ 
+        --max-ch:52ch; /* más angosto para evitar saltos incómodos */
+        --lh-head:1.22; /* títulos un poco más altos */
+        --s0:0.9rem; --s1:1.25rem; --s2:1.5rem; --s3:2rem; /* compás vertical más ágil */
+      }
+      .container{ 
+        padding-left: calc(1rem + env(safe-area-inset-left)); 
+        padding-right: calc(1rem + env(safe-area-inset-right)); 
+        padding-top: var(--s2); padding-bottom: var(--s3);
+      }
+      .logo{ height:28px }
+      h1{ font-size: clamp(1.9rem, 7vw + 0.75rem, 2.4rem); letter-spacing:-0.01em }
+      h3{ font-size: clamp(1.05rem, 3.2vw + 0.75rem, 1.35rem); line-height:1.4; }
+      h2{ font-size: clamp(1.35rem, 4.8vw + 0.8rem, 1.85rem); }
+      h2 br{ display:none } /* dejamos que balancee solo */
+      .prose p{ font-size: 1.0625rem; line-height: 1.75; }
+    }
+
+    /* Tablets pequeñas / phablets */
+    @media (min-width: 481px) and (max-width: 768px){
+      :root{ --max-ch:60ch }
+      h1{ font-size: clamp(2.1rem, 3.8vw + 1rem, 2.8rem) }
+      h2{ font-size: clamp(1.5rem, 3vw + 1rem, 2.1rem) }
+    }
   </style>
 </head>
 <body>
