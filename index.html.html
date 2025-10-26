@@ -1,71 +1,82 @@
-export default function LandingArmando() {
-  return (
-    <main
-      className="min-h-screen bg-white text-[#100135] antialiased selection:bg-[#0FFC7E] selection:text-[#100135]"
-      style={{ fontFamily: 'Lato, ui-sans-serif, system-ui' }}
-    >
-      {/* Header mínimo con logo (sin navegación, sin botones) */}
-      <header className="mx-auto max-w-[68ch] px-6 pt-8 pb-4">
-        <img
-          src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg"
-          alt="Armando — logo"
-          className="h-8 w-auto select-none"
-          draggable={false}
-        />
-      </header>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Landing — Armando (Prueba)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Preservar selección personalizada */
+    ::selection { background: #0FFC7E; color: #100135; }
+    /* Forzar la fuente Lato en el body */
+    body { font-family: 'Lato', ui-sans-serif, system-ui; }
+  </style>
+</head>
+<body class="min-h-screen bg-white text-[#100135] antialiased">
+  <!-- Header mínimo con logo (sin navegación, sin botones) -->
+  <main class="min-h-screen bg-white text-[#100135] antialiased selection:bg-[#0FFC7E] selection:text-[#100135]">
+    <header class="mx-auto max-w-[68ch] px-6 pt-8 pb-4">
+      <img
+        src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg"
+        alt="Armando — logo"
+        class="h-8 w-auto select-none"
+        draggable="false"
+      />
+    </header>
 
-      {/* Contenido de lectura: SOLO TEXTO */}
-      <section className="mx-auto max-w-[68ch] px-6 pb-16 md:pb-24">
-        {/* H1 */}
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl text-[#100135]">
-          <span>Te devuelvo tu dinero </span>
-          <span className="text-[#640FEA]">si esta asesoría de copywriting</span>
-          <span> no aumenta tus ganancias</span>
-        </h1>
+    <!-- Contenido de lectura: SOLO TEXTO -->
+    <section class="mx-auto max-w-[68ch] px-6 pb-16 md:pb-24">
+      <!-- H1 -->
+      <h1 class="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl md:text-5xl text-[#100135]">
+        <span>Te devuelvo tu dinero </span>
+        <span class="text-[#640FEA]">si esta asesoría de copywriting</span>
+        <span> no aumenta tus ganancias</span>
+      </h1>
 
-        {/* H3 */}
-        <h3 className="mt-6 text-xl font-semibold leading-snug text-[#000000] md:text-2xl">
-          Es claro que las <strong className="font-extrabold text-[#640FEA]">ganancias pobres</strong> no solo ponen en riesgo tu negocio, también tu tranquilidad
-        </h3>
+      <!-- H3 -->
+      <h3 class="mt-6 text-xl font-semibold leading-snug text-[#000000] md:text-2xl">
+        Es claro que las <strong class="font-extrabold text-[#640FEA]">ganancias pobres</strong> no solo ponen en riesgo tu negocio, también tu tranquilidad
+      </h3>
 
-        {/* Párrafos breves y legibles */}
-        <div className="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
-          <p>
-            <strong>Te ayudo a rescatar tu negocio del estancamiento y convertirlo en una máquina de ventas, pero...
-</strong>
-          </p>
-          <p>
-            A diferencia de otros copywriters, no busco solo escribir tus textos, si no sobre todo darte la <strong className="font-extrabold text-[#000000]">estrategia de marketing adaptada a tu contexto.</strong> A tu campo de batalla.
-          </p>
-        </div>
+      <!-- Párrafos breves y legibles -->
+      <div class="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
+        <p>
+          <strong>Te ayudo a rescatar tu negocio del estancamiento y convertirlo en una máquina de ventas, pero...</strong>
+        </p>
+        <p>
+          A diferencia de otros copywriters, no busco solo escribir tus textos, si no sobre todo darte la <strong class="font-extrabold text-[#000000]">estrategia de marketing adaptada a tu contexto.</strong> A tu campo de batalla.
+        </p>
+      </div>
 
-        {/* H2 (mismo peso en todo el enunciado) */}
-        <h2 className="mt-12 text-2xl font-extrabold leading-snug tracking-normal text-[#100135] sm:text-3xl md:text-4xl">
-          Las técnicas que utilizo son antiguas (algunos incluso dirían que raras).
-          <span className="block pt-1"> Pero si no te hago ganar más con ellas, te devuelvo tu dinero. <span className="text-[#640FEA]">Sin preguntas</span></span>
-        </h2>
+      <!-- H2 (mismo peso en todo el enunciado) -->
+      <h2 class="mt-12 text-2xl font-extrabold leading-snug tracking-normal text-[#100135] sm:text-3xl md:text-4xl">
+        Las técnicas que utilizo son antiguas (algunos incluso dirían que raras).
+        <span class="block pt-1"> Pero si no te hago ganar más con ellas, te devuelvo tu dinero. <span class="text-[#640FEA]">Sin preguntas</span></span>
+      </h2>
 
-        {/* Bloque carta */}
-        <div className="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
-          <p className="text-[#000000]"><strong>Estimado emprendedor o empresario:</strong></p>
+      <!-- Bloque carta -->
+      <div class="mt-8 space-y-5 text-[1.0625rem] leading-8 text-[#100135]">
+        <p class="text-[#000000]"><strong>Estimado emprendedor o empresario:</strong></p>
 
-          <p>
-            Antes de hacerle invertir su valioso tiempo leyendo sobre esta oportunidad, permítame comentarle que <strong className="font-extrabold text-[#000000]">no todos los negocios podrán aplicar</strong> a esta asesoría.
-          </p>
+        <p>
+          Antes de hacerle invertir su valioso tiempo leyendo sobre esta oportunidad, permítame comentarle que <strong class="font-extrabold text-[#000000]">no todos los negocios podrán aplicar</strong> a esta asesoría.
+        </p>
 
-          <p>
-            La razón de esto no es otra que mi <strong className="font-extrabold text-[#000000]">filosofía de trabajo</strong>: no me interesa conseguir muchos clientes, si no <strong className="underline decoration-[#640FEA] underline-offset-4">casos de éxito</strong>.
-          </p>
+        <p>
+          La razón de esto no es otra que mi <strong class="font-extrabold text-[#000000]">filosofía de trabajo</strong>: no me interesa conseguir muchos clientes, si no <strong class="underline decoration-[#640FEA] underline-offset-4">casos de éxito</strong>.
+        </p>
 
-          <p>
-            Esto significa que solo trabajo con negocios con <strong className="font-extrabold text-[#000000]">productos o servicios de calidad</strong> y con un <strong className="font-extrabold text-[#000000]">valor diferencial</strong>.
-          </p>
+        <p>
+          Esto significa que solo trabajo con negocios con <strong class="font-extrabold text-[#000000]">productos o servicios de calidad</strong> y con un <strong class="font-extrabold text-[#000000]">valor diferencial</strong>.
+        </p>
 
-          <p>
-            Como dije, me interesa más <strong className="font-extrabold text-[#000000]">garantizar el éxito</strong> de lo que hago antes que tener muchos clientes.
-          </p>
-        </div>
-      </section>
-    </main>
-  );
+        <p>
+          Como dije, me interesa más <strong class="font-extrabold text-[#000000]">garantizar el éxito</strong> de lo que hago antes que tener muchos clientes.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
 }
