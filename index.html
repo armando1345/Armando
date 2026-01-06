@@ -1,132 +1,238 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Armando — Asesoría de copywriting</title>
-  <!-- Lato -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Asesoria Armandefica: asesoria express de copywriting clasico para paginas web comerciales. 120 minutos para mejorar la rentabilidad de tu negocio.">
+  <meta property="og:title" content="Asesoria Armandefica | Copywriting clasico">
+  <meta property="og:description" content="Asesoria express de copywriting clasico para paginas web comerciales. 120 minutos para mejorar la rentabilidad de tu negocio.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Asesoria Armandefica | Copywriting clasico">
+  <meta name="twitter:description" content="Asesoria express de copywriting clasico para paginas web comerciales. 120 minutos para mejorar la rentabilidad de tu negocio.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
+  <title>Asesoría Armandéfica | Copywriting Clásico</title>
+  <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dul66qlpq/image/upload/v1763566644/favicon_armando_x91po3.svg">
+
+  <!-- Google Fonts: Lato -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      /* Colores de marca */
-      --paper:#ffffff;
-      --ink:#100135;         /* cuerpo */
-      --ink-strong:#000000;  /* énfasis dentro de párrafo */
-      --brand:#640FEA;       /* acentos grandes */
-      --muted:#b8bec4;       /* notas discretas */
-      --highlight:#0FFC7E;   /* selección */
-      /* Tipografía y ritmo */
-      --lh-body:1.75;        /* interlineado cómodo */
-      --lh-head:1.18;        /* interlineado títulos */
-      --max-ch:68ch;         /* ancho de lectura */
-      --s0:1rem; --s1:1.5rem; --s2:2rem; --s3:3rem; /* escala simple de espaciado */
-    }
-    html,body{height:100%}
-    body{
-      margin:0; background:var(--paper); color:var(--ink);
-      font-family:Lato, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      text-rendering:optimizeLegibility; font-feature-settings:"liga" 1, "kern" 1;
-      hanging-punctuation:first; hyphens:auto; word-break:normal;
-    }
-    ::selection{ background:var(--highlight); color:var(--ink); }
-    .container{ max-width:var(--max-ch); margin-inline:auto; padding: calc(var(--s2)) 1.25rem var(--s3); }
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
 
-    /* Header mínimo con logo */
-    header{ padding: var(--s2) 0 var(--s0); }
-    .logo{ height:32px; width:auto; user-select:none; -webkit-user-drag:none; display:block }
-
-    /* Títulos balanceados para UX de lectura */
-    h1,h2{ text-wrap:balance; letter-spacing:-0.012em; line-height:var(--lh-head); margin:0 }
-    h3{ text-wrap:balance; margin:0 }
-
-    h1{ font-weight:900; color:var(--ink);
-        font-size:clamp(2rem, 3.2vw + 1rem, 3.15rem); margin-top:var(--s0) }
-    h1 .brand{ color:var(--brand); font-weight:inherit }
-
-    h3{ font-weight:700; color:var(--ink-strong);
-        font-size:clamp(1.125rem, 1.3vw + 1rem, 1.75rem); margin-top:var(--s1); line-height:1.35 }
-    h3 .brand{ color:var(--brand); font-weight:800 }
-
-    h2{ font-weight:800; color:var(--ink);
-        font-size:clamp(1.625rem, 2.1vw + 1rem, 2.35rem); margin-top:var(--s3) }
-    h2 .brand{ color:var(--brand); font-weight:inherit }
-
-    /* Prosa: tamaño ligeramente mayor para confort y ritmo controlado */
-    .prose{ margin-top:var(--s1) }
-    .prose p{ margin:0 0 1rem; font-size:clamp(1rem, 0.25vw + 1rem, 1.125rem); line-height:var(--lh-body); text-wrap:pretty; }
-    .prose strong{ font-weight:800; color:var(--ink-strong) }
-
-    /* Utilidades mínimas */
-    .u-gap{ margin-top:var(--s2) }
-
-    /* -------- Responsive móvil -------- */
-    @media (max-width: 480px){
-      :root{ 
-        --max-ch:52ch; /* más angosto para evitar saltos incómodos */
-        --lh-head:1.22; /* títulos un poco más altos */
-        --s0:0.9rem; --s1:1.25rem; --s2:1.5rem; --s3:2rem; /* compás vertical más ágil */
-      }
-      .container{ 
-        padding-left: calc(1rem + env(safe-area-inset-left)); 
-        padding-right: calc(1rem + env(safe-area-inset-right)); 
-        padding-top: var(--s2); padding-bottom: var(--s3);
-      }
-      .logo{ height:28px }
-      h1{ font-size: clamp(1.9rem, 7vw + 0.75rem, 2.4rem); letter-spacing:-0.01em }
-      h3{ font-size: clamp(1.05rem, 3.2vw + 0.75rem, 1.35rem); line-height:1.4; }
-      h2{ font-size: clamp(1.35rem, 4.8vw + 0.8rem, 1.85rem); }
-      h2 br{ display:none } /* dejamos que balancee solo */
-      .prose p{ font-size: 1.0625rem; line-height: 1.75; }
-    }
-
-    /* Tablets pequeñas / phablets */
-    @media (min-width: 481px) and (max-width: 768px){
-      :root{ --max-ch:60ch }
-      h1{ font-size: clamp(2.1rem, 3.8vw + 1rem, 2.8rem) }
-      h2{ font-size: clamp(1.5rem, 3vw + 1rem, 2.1rem) }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <!-- Tailwind CSS (via CDN for single file portability) -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <main>
-    <div class="container">
-      <header>
-        <img class="logo" src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Armando — logo" draggable="false" />
-      </header>
+<body class="font-sans text-brand-dark bg-white antialiased">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-      <section aria-label="Portada y promesa">
-        <h1>
-          <span>Te devuelvo tu dinero </span>
-          <span class="brand">si esta asesoría de copywriting</span>
-          <span> no aumenta tus ganancias</span>
-        </h1>
-        <h3>
-          Es claro que las <strong class="brand">ganancias pobres</strong> no solo ponen en riesgo tu negocio, también tu tranquilidad
-        </h3>
-        <div class="prose">
-          <p><strong>La libertad, la paz y el dinero se sustentan en la estrategia.</strong></p>
-          <p>A diferencia de otros copywriters, no busco solo escribir tus textos, si no además darte la <strong>estrategia de marketing</strong> que te dará una vida más próspera… para que la compartas con la gente que importa.</p>
-        </div>
-      </section>
+  <!-- Header / Nav -->
+  <nav class="site-nav w-full py-6 px-4 md:px-8 flex justify-center reveal" style="--delay: 0.05s;">
+    <img src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Logo Armando" class="h-12 w-auto">
+  </nav>
 
-      <section aria-label="Garantía y filosofía" class="u-gap">
-        <h2>
-          Las técnicas que utilizo son antiguas (algunos incluso dirían que raras).<br>
-          <span>Pero si no te hago ganar más con ellas, te devuelvo tu dinero. </span><span class="brand">Sin preguntas</span>
-        </h2>
-        <div class="prose">
-          <p><strong>Estimado emprendedor o empresario:</strong></p>
-          <p>Antes de hacerle invertir su valioso tiempo leyendo sobre esta oportunidad, permítame comentarle que <strong>no todos los negocios podrán aplicar</strong> a esta asesoría.</p>
-          <p>La razón de esto no es otra que mi <strong>filosofía de trabajo</strong>: no me interesa conseguir muchos clientes, si no <strong><span style="text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px; color: var(--brand)">casos de éxito</span></strong>.</p>
-          <p>Esto significa que solo trabajo con negocios con <strong>productos o servicios de calidad</strong> y con un <strong>valor diferencial</strong>.</p>
-          <p>Como dije, me interesa más <strong>garantizar el éxito</strong> de lo que hago antes que tener muchos clientes.</p>
-        </div>
-      </section>
+  <main id="contenido" role="main" class="letter-main">
+  <!-- Hero Section -->
+  <header class="hero-surface pt-16 pb-20 px-4 md:px-8 relative overflow-hidden">
+
+    <div class="hero-content max-w-4xl mx-auto relative z-10">
+      <h1 class="hero-title font-black tracking-tight text-brand-dark reveal" style="--delay: 0.15s;">
+        Hacer crecer tu negocio te está costando <span class="marker-line" style="--marker-delay: 0.6s;">más de lo que debería</span>…
+        <span class="hero-title-break text-brand-dark">¡Te ayudo a resolverlo con solo <span class="headline-number">120</span> minutos de la <span class="marker-line" style="--marker-delay: 1.2s;"><strong>Asesoría Armandéfica</strong></span>!</span>
+      </h1>
+
+      <h2 class="hero-subtitle font-light text-brand-dark reveal" style="--delay: 0.35s;">
+        <strong>Asesoría Armandéfica</strong>: asesoria express de copywriting clásico para páginas web comerciales
+      </h2>
+
     </div>
+  </header>
+
+  <!-- Main Letter Section -->
+  <section class="letter-section letter-opening px-4 md:px-8">
+    <div class="letter-flow">
+
+    <!-- Salutation -->
+    <h4 class="letter-salutation">Estimado emprendedor o empresario:</h4>
+
+    <div class="letter-body">
+      <p class="letter-lead">
+        En esta carta de ventas, te explicaré a qué me refiero al hablar de copywriting clásico especializado en páginas web.
+      </p>
+
+      <p>
+        Solo entenderlo, <strong>podría cambiar la visión</strong> que tienes de tu negocio.
+      </p>
+
+      <p>Te contaré los <strong>detalles finos (buenos y malos)</strong> de esta asesoría.</p>
+
+      <p>También te contaré algo poco común en un asesor: <strong>una verdad que casi nadie diría</strong> en una carta de ventas.</p>
+
+      <p>Y te diré por qué y cómo puedes sacarle partido para que tu negocio sea <strong>financieramente más seguro</strong> y te aporte libertad.</p>
+
+      <!-- Highlight Box -->
+      <div class="letter-note">
+        <span class="letter-note-label marker-line marker-purple">IMPORTANTE</span>
+        <p>
+          A diferencia de otros, no me esfumo después de las asesorías. Durante <strong>3 meses</strong> responderé tus dudas por correo para garantizar que, si eres mi cliente, disolvamos el estancamiento con <strong>copywriting de verdad</strong> - sin piedad para lo que no vende.
+        </p>
+      </div>
+
+      <div class="cta-primary-wrap">
+        <a href="#" class="cta-primary hero-cta font-bold transition-all duration-300">
+          <span class="cta-label cta-label-stacked">
+            <span class="cta-label-text">Solicitar Asesoría Armandéfica para mi negocio</span>
+            <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
+              <svg class="cta-arrow-icon" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M2 8H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                <path d="M34 2L42 8L34 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="author-strip">
+        <div class="author-photo">
+          <img src="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png" alt="Armando Ruiz" class="author-image">
+        </div>
+
+        <div class="author-meta">
+          <h3 class="author-name text-brand-dark">Armando Ruiz</h3>
+          <div class="author-rule"></div>
+          <p class="author-quote text-brand-dark">
+            ¿Te suenan Ogilvy, Caples, Halbert, Bencivenga o Hopkins? Ellos son al marketing lo que Newton o Einstein son a la física. Por eso no sigo tendencias, sigo sus principios.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- The Classics Section -->
+  <section class="brand-panel letter-section bg-brand-gray-light/20 px-4 md:px-8 border-y border-brand-gray-mid/30 reveal" style="--delay: 0.08s;">
+    <div class="letter-flow">
+      <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-10 text-center">
+        Muy bien, ahora si te lo aclaro ¿qué entendían los clásicos al hablar del buen copy?
+      </h2>
+
+      <div class="space-y-6 text-lg text-brand-dark font-light">
+          <p>Ellos entendían que el buen copy es sencillo y emocionante… <span class="font-bold bg-brand-green/20 px-1">¡Pero sobre todo genera ventas!</span> Déjame explicarte con más profundidad.</p>
+          <p>A ellos no les importaba la creatividad, ni siquiera la belleza: lo que les importaba es vender hoy y siempre.</p>
+          <p>Hacer que tu cliente piense: “Esto es exactamente lo que buscaba.”</p>
+        <div class="quote-block quote-track bg-white p-8 rounded-xl border border-brand-gray-light relative">
+          <span class="quote-mark absolute -top-4 -left-4 text-6xl text-brand-purple opacity-20 font-serif">"</span>
+          <p class="quote-text text-xl font-medium text-brand-dark italic mb-4 relative z-10">
+            Porque como decía Hopkins: "La publicidad no es para ganar premios, es para vender. El éxito se mide solo por las ventas."
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center letter-flow">
+        <p class="text-lg text-brand-dark mb-6">
+          Estos principios atemporales son los que veremos en las asesorías, aplicándolos a tu negocio. Ahora viene la parte buena:
+        </p>
+        <p class="text-2xl font-bold text-brand-purple">
+          Si algo en tu web no vende, lo quitamos y si vende, lo agregamos.
+        </p>
+        <p class="text-lg text-brand-dark mt-6">
+          Ese es el principio básico que tanta gente de marketing tiene olvidado: dan igual los embudos, da igual si tu anuncio es gracioso, si no vende no funciona.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Strategy Section (Dark Inverted) -->
+  <section class="strategy-surface letter-section px-4 md:px-8 relative reveal" style="--delay: 0.08s;">
+    <div class="letter-flow">
+      <h2 class="text-3xl md:text-4xl font-black mb-12 text-center text-brand-dark">
+        Todo esto que te acabo de decir significa que…
+      </h2>
+
+      <ul class="brand-list text-lg font-light text-brand-dark">
+        <li>Las estrategias de la <strong>Asesoría Armandéfica</strong> no son ideas genéricas de ChatGPT, Gemini o cualquier IA: la IA puede ayudar, claro. Pero no sustituye a un copywriter de nivel. Si la IA fuera suficiente, todas esas webs que la usan venderían… Y no lo hacen.</li>
+        <li><strong>Las estrategias NO harán que dependas de mí eternamente.</strong> Yo crearé el plan, te acompañaré para que sepas ejecutarlo durante 3 meses y la idea es que puedas replicarlo por tu cuenta.</li>
+        <li><strong>Tu equipo puede estar en las reuniones</strong>, así la asesoría servirá como capacitación, pero hay más.</li>
+        <li>No buscaré darte motivación ni palabras innecesarias en las asesorías. <strong>Son breves</strong> porque te diré qué hacer y cómo hacerlo de forma clara.</li>
+        <li>Incluso si tu negocio es raro o muy específico, no hay problema. Por eso las asesorías son <strong>personalizadas</strong>.</li>
+      </ul>
+
+      <!-- Truth Box -->
+      <div class="mt-16 bg-brand-purple/10 border border-brand-purple p-8 rounded-lg">
+        <h3 class="text-brand-purple font-bold text-xl mb-4 uppercase tracking-widest">La verdad incómoda</h3>
+        <p class="mb-4">
+          Si por lo que sea, no veo potencial de mejora en un negocio, se lo diré al cliente y <strong>no aceptaré a trabajar con su empresa</strong>.
+        </p>
+        <p>
+          Esto es así, sin ninguna maldad o táctica de manipulación. Es simple ética de trabajo y deseo de que cualquier trabajo que realice, tenga resultados excepcionales.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Details Section -->
+  <section class="brand-panel letter-section px-4 md:px-8">
+    <div class="letter-flow">
+      <h2 class="text-3xl md:text-4xl font-black text-brand-dark mb-12 text-center leading-tight">
+        Ahora sí, los detalles finos buenos y malos de estas asesorías. Para algunos negocios todo serán beneficios y para otros habrá cosas buenas y malas. <span class="text-brand-purple">Analíza según tu caso</span>
+      </h2>
+
+      <ul class="list-check space-y-6 text-lg text-brand-dark font-light mb-16">
+        <li>Tendremos solo <strong>2 reuniones express</strong>, cada una de <strong>60 minutos</strong>. En la primera reunión te escucharé y te haré preguntas para comprender tu caso. En la segunda, te presentaré la estrategia que haya planeado para tu empresa. Si buscas muchas reuniones y muy largas, estas asesorías no son para ti.</li>
+
+        <li>Acepto que <strong>tu equipo esté presente</strong> y haga preguntas en las reuniones, por si quieres que sirvan como capacitación.</li>
+
+        <li>Te daré un <strong>PDF muy visual y útil</strong> para que puedas consultar en caso de dudas: ahí podrás volver a ver después de la segunda reunión en qué consiste la estrategia, el por qué detrás de ella y cómo ejecutarla. Todo muy sencillo y paso a paso.</li>
+
+        <li>Aceptaré <strong>pocos clientes</strong>, como te decía antes. Esto significa que mientras trabajo en tu empresa, eres mi prioridad. No estaré pensando en el cliente B, como hacen otros.</li>
+
+        <li>Durante <strong>3 meses</strong> puedes escribirme por el chat del correo diciéndome cualquier duda que tengas. Te atenderé rápido con gusto y amabilidad.</li>
+
+        <li>También yo te haré <strong>muchas preguntas</strong>. Porque debo comprender hasta la más delgada hebra de tu negocio para darte los resultados que prometo. Si no estás dispuesto a responder dudas, quizás es mejor que busques a otro asesor.</li>
+      </ul>
+
+      <!-- Conclusion -->
+      <div class="conclusion-card bg-brand-gray-light/30 p-8 text-center">
+        <p class="text-xl text-brand-dark font-medium mb-6">
+          En fin, Dan Kennedy (otro publicista clásico) dice que cada día que te demoras en arreglar tu marketing <strong>estás perdiendo dinero</strong>.
+        </p>
+
+        <p class="text-lg mb-6">
+          Y es cierto, así que da igual si trabajamos juntos o no, es importante que mejores tu marketing.
+        </p>
+
+        <p class="text-lg mb-8 font-bold text-brand-purple">
+          Recuerda que solo trabajo con unos pocos clientes por las razones que te expliqué arriba. Así que si mi agenda ya está llena no podrás solicitar tu <strong>Asesoría Armandéfica</strong>.
+        </p>
+
+        <p class="text-2xl font-black text-brand-dark mb-8">Mejor hazlo ahora.</p>
+
+        <a href="#" class="cta-secondary font-black transition-all duration-300 uppercase">
+          <span class="cta-label cta-label-stacked">
+            <span class="cta-label-text">Mejorar la rentabilidad de mi negocio con la <strong>Asesoría Armandéfica</strong></span>
+            <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
+              <svg class="cta-arrow-icon" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M2 8H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                <path d="M34 2L42 8L34 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   </main>
+
+  <!-- Footer -->
+  <footer class="site-footer py-12 text-center">
+    <img src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Logo Armando" class="h-10 w-auto mx-auto mb-6 opacity-80">
+    <p class="text-brand-dark text-sm font-light">© 2024 <strong>Asesoría Armandéfica</strong>. Todos los derechos reservados.</p>
+  </footer>
+
 </body>
 </html>
+
