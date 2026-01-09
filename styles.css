@@ -1045,10 +1045,16 @@ a.cta-secondary {
     line-height: 1.18;
     margin-bottom: 1.2rem;
     max-width: 100%;
+    text-wrap: wrap;
   }
 
   .hero-subtitle {
     font-size: 1.3rem;
+  }
+
+  .hero-title-break {
+    display: inline;
+    margin-top: 0;
   }
 
   .hero-title .marker-line {
