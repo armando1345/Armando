@@ -276,12 +276,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (heroTitle) {
     const wordsPerSecondDelay = 4.2;
-    const wordsPerSecondDuration = 2.0;
+    const wordsPerSecondDuration = 1.4;
     const baseDelay = 0.25;
     const minDelay = 0.5;
     const maxDelay = 3.6;
-    const minDuration = 1.4;
-    const maxDuration = 4.2;
+    const minDuration = 2.2;
+    const maxDuration = 5.0;
     const walker = document.createTreeWalker(
       heroTitle,
       NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT,
@@ -310,7 +310,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains("marker-line")) {
         const wordsBefore = textSoFar.trim().split(/\s+/).filter(Boolean).length;
-        const rawDelay = baseDelay + wordsBefore / wordsPerSecondDelay;
+        const offset = Number.parseFloat(node.dataset.markerOffset || "0") || 0;
+        const rawDelay = baseDelay + wordsBefore / wordsPerSecondDelay + offset;
         const delay = Math.min(maxDelay, Math.max(minDelay, rawDelay));
         node.style.setProperty("--marker-delay", `${delay.toFixed(2)}s`);
         const wordsInMarker = node.textContent.trim().split(/\s+/).filter(Boolean).length;
