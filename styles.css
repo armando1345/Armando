@@ -586,7 +586,7 @@ body.modal-open {
   text-wrap: balance;
   text-align: left;
   padding-left: 0;
-  font-size: clamp(1.88rem, 3.3vw, 2.93rem);
+  font-size: clamp(2.05rem, calc(3.3vw + 0.17rem), 3.1rem);
 }
 
 .hero-title-break {
@@ -1041,7 +1041,7 @@ a.cta-secondary {
   }
 
   .hero-title {
-    font-size: clamp(1.73rem, 6.6vw, 2.28rem);
+    font-size: clamp(1.9rem, calc(6.6vw + 0.17rem), 2.45rem);
     line-height: 1.18;
     margin-bottom: 1.2rem;
     max-width: 100%;
@@ -1151,6 +1151,20 @@ a.cta-secondary {
 
 .marker-line.marker-flow::after {
   content: none;
+}
+
+.marker-line.marker-static::after {
+  animation: none;
+  transform: scaleX(1) rotate(-0.4deg);
+}
+
+.marker-line.marker-static.is-visible::after {
+  animation: none;
+  transform: scaleX(1) rotate(-0.4deg);
+}
+
+.marker-line.marker-luxe.is-visible::after {
+  animation-timing-function: cubic-bezier(0.16, 0.8, 0.2, 1);
 }
 
 .marker-line.marker-purple::after {
