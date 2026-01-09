@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reserva tu Asesor&iacute;a Armand&eacute;fica. Solicitar es gratis, y si eres aceptado la asesor&iacute;a cuesta $600.">
+  <meta property="og:title" content="Reservar Asesor&iacute;a Armand&eacute;fica">
+  <meta property="og:description" content="Deja tu web, tu nombre y tu correo para solicitar la Asesor&iacute;a Armand&eacute;fica.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reservar Asesor&iacute;a Armand&eacute;fica">
+  <meta name="twitter:description" content="Deja tu web, tu nombre y tu correo para solicitar la Asesor&iacute;a Armand&eacute;fica.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
+  <title>Reservar Asesor&iacute;a Armand&eacute;fica</title>
+  <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dul66qlpq/image/upload/v1763566644/favicon_armando_x91po3.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-brand-dark bg-white antialiased booking-page">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <nav class="site-nav w-full py-6 px-4 md:px-8 flex justify-center">
+    <a href="index.html" aria-label="Volver al inicio">
+      <img src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Logo Armando" class="h-12 w-auto">
+    </a>
+  </nav>
+
+  <main id="contenido" role="main" class="letter-main booking-main px-4 md:px-8">
+    <section class="letter-section booking-section">
+      <div class="letter-flow booking-header">
+        <h1 class="booking-title text-brand-dark">Solicita tu Asesor&iacute;a Armand&eacute;fica</h1>
+        <p class="booking-subtitle text-brand-dark">
+          Enviar la solicitud es <strong class="booking-emphasis booking-emphasis-free">gratis</strong>.<br>
+          Solo si tu negocio es aceptado, la asesor&iacute;a cuesta <strong class="booking-emphasis booking-emphasis-price">$600</strong>.
+        </p>
+        <p class="booking-note">
+          <strong>Nota:</strong> Trabajo con un solo negocio a la vez. El negocio seleccionado se tomar&aacute; tambi&eacute;n por orden de llegada.
+        </p>
+      </div>
+
+      <div class="booking-card">
+        <form id="bookingForm" class="booking-form" action="YOUR_SCRIPT_URL" method="POST" target="bookingFrame" novalidate>
+          <div class="booking-field">
+            <label for="web">Direcci&oacute;n de tu web</label>
+            <input
+              id="web"
+              name="web"
+              type="text"
+              placeholder="https://tusitio.com"
+              autocomplete="url"
+              inputmode="url"
+              required
+              data-validate
+              data-required-message="Ingresa la direccion de tu web para revisar tu caso con Armando."
+              aria-describedby="webError"
+            >
+            <p class="field-error" id="webError" aria-live="polite"></p>
+          </div>
+
+          <div class="booking-field">
+            <label for="nombre">Nombre</label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              placeholder="Tu nombre completo"
+              autocomplete="name"
+              required
+              data-validate
+              data-required-message="Ingresa tu nombre para que Armando pueda responderte."
+              aria-describedby="nombreError"
+            >
+            <p class="field-error" id="nombreError" aria-live="polite"></p>
+          </div>
+
+          <div class="booking-field">
+            <label for="correo">Correo</label>
+            <input
+              id="correo"
+              name="correo"
+              type="email"
+              placeholder="tucorreo@dominio.com"
+              autocomplete="email"
+              required
+              data-validate
+              data-required-message="Ingresa tu correo para que Armando pueda contactarte."
+              data-invalid-message="Revisa tu correo: usa un formato como nombre@dominio.com."
+              aria-describedby="correoError"
+            >
+            <p class="field-error" id="correoError" aria-live="polite"></p>
+          </div>
+
+          <div class="booking-field">
+            <label for="problemas">Descripci&oacute;n de los problemas (opcional)</label>
+            <textarea id="problemas" name="problemas" rows="4" placeholder="Cu&eacute;ntame qu&eacute; te preocupa de tu web"></textarea>
+          </div>
+
+          <button type="submit" class="cta-secondary font-black transition-all duration-300 uppercase">
+            <span class="cta-label cta-label-stacked">
+              <span class="cta-label-text">Enviar solicitud</span>
+              <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
+                <svg class="cta-arrow-icon" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <path d="M2 8H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M34 2L42 8L34 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+          </button>
+
+        </form>
+
+        <iframe id="bookingFrame" name="bookingFrame" class="form-iframe" title="Env&iacute;o de solicitud" hidden></iframe>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="submissionModal" aria-hidden="true">
+    <div
+      class="modal-card"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="submissionTitle"
+      aria-describedby="submissionStatus"
+      tabindex="-1"
+    >
+      <img
+        src="https://res.cloudinary.com/dul66qlpq/image/upload/v1763566644/favicon_armando_x91po3.svg"
+        alt="Icono de Armando"
+        class="modal-logo"
+      >
+      <div class="modal-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="modal-progress-bar"></span>
+      </div>
+      <h2 id="submissionTitle" class="modal-title">
+        <span class="modal-title-loading">Enviando solicitud.</span>
+        <span class="modal-title-success">&iexcl;Gracias!</span>
+      </h2>
+      <div id="submissionStatus" class="modal-status" role="status" aria-live="polite">
+        <p class="modal-message modal-message-loading">
+          Esto puede tardar unos segundos.
+        </p>
+        <p class="modal-message modal-message-success">
+          Ya recib&iacute; tu solicitud. La revisar&eacute; y en 24 horas te dir&eacute; por el correo que pusiste si fue aprobada.
+        </p>
+      </div>
+      <button type="button" class="modal-close" disabled>Cerrar</button>
+    </div>
+  </div>
+</body>
+</html>
