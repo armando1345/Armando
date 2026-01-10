@@ -1041,8 +1041,8 @@ a.cta-secondary {
   }
 
   .hero-title {
-    font-size: clamp(1.9rem, calc(6.6vw + 0.17rem), 2.45rem);
-    line-height: 1.18;
+    font-size: clamp(2rem, calc(6.6vw + 0.3rem), 2.5rem);
+    line-height: 1.3;
     margin-bottom: 1.2rem;
     max-width: 100%;
     text-wrap: wrap;
@@ -1109,13 +1109,18 @@ a.cta-secondary {
 }
 
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.85s ease, transform 0.85s ease;
   transition-delay: var(--delay, 0s);
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1229,10 +1234,16 @@ a.cta-secondary {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .js .reveal {
     animation: none;
     opacity: 1;
     transform: none;
+    transition: none;
   }
 
   .booking-emphasis-free::after {
