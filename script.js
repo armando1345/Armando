@@ -22,6 +22,8 @@ window.tailwind.config = {
   }
 };
 
+document.documentElement.classList.add("js");
+
 document.addEventListener("DOMContentLoaded", () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const revealItems = document.querySelectorAll(".reveal");
@@ -341,8 +343,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     },
     {
-      threshold: 0.2,
-      rootMargin: "0px 0px -12% 0px"
+      threshold: 0.1,
+      rootMargin: "0px 0px 10% 0px"
     }
   );
 
