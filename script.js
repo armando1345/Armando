@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const markerItems = document.querySelectorAll(".marker-line");
   const quoteItems = document.querySelectorAll(".quote-track");
   const heroTitle = document.querySelector(".hero-title");
+  const stickyCta = document.querySelector(".sticky-cta");
+  const stickyCtaButton = stickyCta ? stickyCta.querySelector("a") : null;
+  const stickyCtaTargets = document.querySelectorAll("[data-cta-watch]");
   const bookingForm = document.querySelector("#bookingForm");
   const bookingFields = bookingForm ? Array.from(bookingForm.querySelectorAll("[data-validate]")) : [];
   const submissionModal = document.querySelector("#submissionModal");
@@ -44,6 +47,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const makeVisible = (element) => {
     element.classList.add("is-visible");
+  };
+
+  const setStickyCtaState = (shouldShow) => {
+    if (!stickyCta) {
+      return;
+    }
+    stickyCta.classList.toggle("is-visible", shouldShow);
+    if (!stickyCtaButton) {
+      return;
+    }
+    if (shouldShow) {
+      stickyCta.removeAttribute("aria-hidden");
+      stickyCtaButton.removeAttribute("tabindex");
+      return;
+    }
+    stickyCta.setAttribute("aria-hidden", "true");
+    stickyCtaButton.setAttribute("tabindex", "-1");
   };
 
   const getFieldErrorElement = (field) => {
@@ -322,6 +342,61 @@ document.addEventListener("DOMContentLoaded", () => {
         node.style.setProperty("--marker-duration", `${duration.toFixed(2)}s`);
         textSoFar += ` ${node.textContent}`;
       }
+    }
+  }
+
+  if (stickyCta && stickyCtaTargets.length) {
+    const visibleTargets = new Set();
+    const updateStickyCta = () => {
+      setStickyCtaState(visibleTargets.size === 0);
+    };
+
+    if ("IntersectionObserver" in window) {
+      const ctaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              visibleTargets.add(entry.target);
+              return;
+            }
+            visibleTargets.delete(entry.target);
+          });
+          updateStickyCta();
+        },
+        {
+          threshold: 0.01
+        }
+      );
+
+      stickyCtaTargets.forEach((target) => ctaObserver.observe(target));
+    } else {
+      let ticking = false;
+
+      const checkVisibility = () => {
+        visibleTargets.clear();
+        stickyCtaTargets.forEach((target) => {
+          const rect = target.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            visibleTargets.add(target);
+          }
+        });
+        updateStickyCta();
+      };
+
+      const scheduleCheck = () => {
+        if (ticking) {
+          return;
+        }
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          checkVisibility();
+        });
+      };
+
+      window.addEventListener("scroll", scheduleCheck, { passive: true });
+      window.addEventListener("resize", scheduleCheck);
+      checkVisibility();
     }
   }
 
