@@ -66,7 +66,11 @@
       </div>
 
       <div class="booking-card">
-        <form id="bookingForm" class="booking-form" action="YOUR_SCRIPT_URL" method="POST" target="bookingFrame" novalidate>
+        <form id="bookingForm" name="asesoria-armandefica" class="booking-form" method="POST" action="/gracias.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="asesoria-armandefica">
+          <p class="hidden" style="display:none;">
+            <label>Don&rsquo;t fill this out: <input name="bot-field"></label>
+          </p>
           <div class="booking-field">
             <label for="web">Direcci&oacute;n de tu web</label>
             <input
@@ -104,7 +108,7 @@
             <label for="correo">Correo</label>
             <input
               id="correo"
-              name="correo"
+              name="email"
               type="email"
               placeholder="tucorreo@dominio.com"
               autocomplete="email"
@@ -135,8 +139,6 @@
           </button>
 
         </form>
-
-        <iframe id="bookingFrame" name="bookingFrame" class="form-iframe" title="Env&iacute;o de solicitud" hidden></iframe>
       </div>
     </section>
   </main>
@@ -175,3 +177,4 @@
   </div>
 </body>
 </html>
+
