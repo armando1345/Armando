@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const stickyCta = document.querySelector(".sticky-cta");
   const stickyCtaButton = stickyCta ? stickyCta.querySelector("a") : null;
   const stickyCtaTargets = document.querySelectorAll("[data-cta-watch]");
+  const stickyCtaStart = document.querySelector("[data-sticky-start]");
   const bookingForm = document.querySelector("#bookingForm");
   const bookingFields = bookingForm ? Array.from(bookingForm.querySelectorAll("[data-validate]")) : [];
   const submissionModal = document.querySelector("#submissionModal");
@@ -347,8 +348,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (stickyCta && stickyCtaTargets.length) {
     const visibleTargets = new Set();
+    let isAfterFirstCta = false;
+
+    const updateFirstCtaState = () => {
+      if (!stickyCtaStart) {
+        isAfterFirstCta = true;
+        return;
+      }
+      const rect = stickyCtaStart.getBoundingClientRect();
+      isAfterFirstCta = rect.bottom <= 12;
+    };
+
     const updateStickyCta = () => {
-      setStickyCtaState(visibleTargets.size === 0);
+      updateFirstCtaState();
+      setStickyCtaState(isAfterFirstCta && visibleTargets.size === 0);
     };
 
     if ("IntersectionObserver" in window) {
@@ -369,6 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       stickyCtaTargets.forEach((target) => ctaObserver.observe(target));
+      updateStickyCta();
     } else {
       let ticking = false;
 
