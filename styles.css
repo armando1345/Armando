@@ -1166,12 +1166,13 @@ main section h2::after {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.45em;
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 3px;
-  background-color: #640FEA;
-  transform: rotate(12deg);
+  top: 0.3em;
+  width: 1.1rem;
+  height: 1.1rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M7 7L17 17M17 7L7 17' stroke='%23640FEA' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .skip-link {
