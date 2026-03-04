@@ -69,7 +69,7 @@
             <p class="booking-panel-title">
               <span class="booking-label">Pago</span>
             </p>
-            <p class="booking-panel-line"><span class="booking-number">$500</span> al ser aceptado + <span class="booking-number">$500</span> solo con resultados</p>
+            <p class="booking-panel-line"><span class="booking-number">$500</span> por adelantado + <span class="booking-number">$500</span> solo con resultados</p>
           </div>
           <div class="booking-panel booking-panel-strong">
             <p class="booking-panel-title">
@@ -79,18 +79,19 @@
           </div>
         </div>
         <p class="booking-note">
-          <strong>Nota:</strong> El precio subir&aacute; cuando existan casos de &eacute;xito publicados. <strong>Solicita tu asesor&iacute;a libre de riesgos abajo.</strong>
+          <strong>Nota:</strong> El precio subir&aacute; cuando existan casos de &eacute;xito publicados.
         </p>
       </div>
 
       <div class="booking-card">
+        <div class="mb-6 p-3 bg-brand-gray-light/40 border border-brand-gray-mid rounded-lg text-center"><p class="text-sm font-bold text-brand-dark m-0 flex items-center justify-center gap-2"><span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-purple opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-brand-purple"></span></span> Trabajo solo con 1 proyecto a la vez.</p></div>
         <form id="bookingForm" name="asesoria-armandefica" class="booking-form" method="POST" action="/gracias.html" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="asesoria-armandefica">
           <p class="hidden" style="display:none;">
             <label>Don&rsquo;t fill this out: <input name="bot-field"></label>
           </p>
           <div class="booking-field">
-            <label for="web">Direcci&oacute;n de tu web</label>
+            <label for="web">¿Cuál es tu sitio web? (URL)</label>
             <input
               id="web"
               name="web"
@@ -140,13 +141,13 @@
           </div>
 
           <div class="booking-field">
-            <label for="problemas">Descripci&oacute;n de los problemas (opcional)</label>
+            <label for="problemas">&iquest;Cu&aacute;l es el mayor obst&aacute;culo de ventas que tienes ahora? (Opcional)</label>
             <textarea id="problemas" name="problemas" rows="4" placeholder="Cu&eacute;ntame qu&eacute; problemas tienes con tu web. Esto me ayudar&aacute; al momento de hacer el diagn&oacute;stico (opcional)"></textarea>
           </div>
 
           <button type="submit" class="cta-secondary font-black transition-all duration-300 uppercase">
             <span class="cta-label cta-label-stacked">
-              <span class="cta-label-text">Enviar solicitud</span>
+              <span class="cta-label-text">Solicitar Evaluaci&oacute;n Gratuita</span>
               <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
                 <svg class="cta-arrow-icon" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
                   <path d="M2 8H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
@@ -155,7 +156,7 @@
               </span>
             </span>
           </button>
-          <p class="mt-4 text-center text-sm text-brand-dark/70 font-medium flex items-center justify-center gap-1.5"><svg class="w-4 h-4 text-brand-purple" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg> Tu información es 100% confidencial. No necesitas tarjeta.</p>
+          <p class="mt-4 text-center text-sm font-bold text-brand-dark flex flex-col items-center justify-center gap-1"><span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-purple" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg> Tu información es 100% confidencial. No se requiere tarjeta.</span></p>
 
         </form>
       </div>
