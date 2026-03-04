@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fieldWrapper = field.closest(".booking-field");
     if (fieldWrapper) {
       fieldWrapper.classList.add("has-error");
+      fieldWrapper.classList.remove("has-success");
     }
     field.setAttribute("aria-invalid", "true");
     const errorElement = getFieldErrorElement(field);
@@ -91,7 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const clearFieldError = (field) => {
+  const clearFieldError = (field, options = {}) => {
+    const { applySuccess = true } = options;
     const fieldWrapper = field.closest(".booking-field");
     if (fieldWrapper) {
       fieldWrapper.classList.remove("has-error");
@@ -100,6 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorElement = getFieldErrorElement(field);
     if (errorElement) {
       errorElement.textContent = "";
+    }
+    if (applySuccess) {
+      toggleFieldSuccess(field);
+      return;
+    }
+    if (fieldWrapper) {
+      fieldWrapper.classList.remove("has-success");
     }
   };
 
@@ -112,6 +121,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return field.dataset.invalidMessage || "Ingresa un correo valido.";
     }
     return "";
+  };
+
+  const toggleFieldSuccess = (field) => {
+    const fieldWrapper = field.closest(".booking-field");
+    if (!fieldWrapper) {
+      return;
+    }
+    const hasValue = field.value.trim() !== "";
+    const hasError = getFieldErrorMessage(field) !== "";
+    fieldWrapper.classList.toggle("has-success", hasValue && !hasError);
   };
 
   const validateBookingForm = () => {
@@ -233,15 +252,18 @@ document.addEventListener("DOMContentLoaded", () => {
     bookingFields.forEach((field) => {
       field.addEventListener("input", () => {
         const fieldWrapper = field.closest(".booking-field");
-        if (!fieldWrapper || !fieldWrapper.classList.contains("has-error")) {
-          return;
+        if (fieldWrapper) {
+          fieldWrapper.classList.remove("has-success");
         }
         const errorMessage = getFieldErrorMessage(field);
-        if (errorMessage) {
-          setFieldError(field, errorMessage);
+        if (fieldWrapper && fieldWrapper.classList.contains("has-error")) {
+          if (errorMessage) {
+            setFieldError(field, errorMessage);
+            return;
+          }
+          clearFieldError(field, { applySuccess: false });
           return;
         }
-        clearFieldError(field);
       });
 
       field.addEventListener("blur", () => {
@@ -252,6 +274,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         clearFieldError(field);
       });
+    });
+
+    bookingFields.forEach((field) => {
+      toggleFieldSuccess(field);
     });
 
     bookingForm.addEventListener("submit", (event) => {
