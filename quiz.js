@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const selected = quizForm.querySelector(`input[type="radio"][name="${name}"]:checked`);
-      const shouldShow = Boolean(selected && selected.value === expectedValue);
+      const inputs = Array.from(quizForm.querySelectorAll(`input[name="${name}"]`));
+      const shouldShow = inputs.some((input) => input.checked && input.value === expectedValue);
       const wrapper = field.closest(".quiz-conditional") || field;
 
       wrapper.hidden = !shouldShow;
@@ -128,7 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const shouldUpdateConditionalFieldsFor = (target) => {
-    if (!(target instanceof HTMLInputElement) || target.type !== "radio" || conditionalFields.length === 0) {
+    if (!(target instanceof HTMLInputElement) || conditionalFields.length === 0) {
+      return false;
+    }
+
+    if (target.type !== "radio" && target.type !== "checkbox") {
       return false;
     }
 
@@ -198,6 +202,19 @@ document.addEventListener("DOMContentLoaded", () => {
           message: step.dataset.maxMessage || `Puedes seleccionar hasta ${maxSelect} opciones.`,
           focusTarget: checkboxes[0] || null
         };
+      }
+
+      const checkedWithText = checkboxes.find((checkbox) => checkbox.checked && checkbox.dataset.requiresText);
+      if (checkedWithText) {
+        const requiredTextId = checkedWithText.dataset.requiresText;
+        const requiredTextField = requiredTextId ? step.querySelector(`#${requiredTextId}`) : null;
+        if (requiredTextField && requiredTextField.value.trim() === "") {
+          return {
+            isValid: false,
+            message: requiredTextField.dataset.requiredMessage || "Especifica tu respuesta para continuar.",
+            focusTarget: requiredTextField
+          };
+        }
       }
 
       return {
@@ -580,16 +597,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const isChoiceInput = target instanceof HTMLInputElement && (target.type === "checkbox" || target.type === "radio");
 
     if (isChoiceInput) {
-      if (
-        target instanceof HTMLInputElement &&
-        target.type === "radio" &&
-        target.name === "ocasion" &&
-        target.checked &&
-        isOnFirstQuestionStep() &&
-        isEarlyExitSelected()
-      ) {
-        submitQuiz();
-      }
       return;
     }
 
@@ -614,6 +621,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const step = target.closest("[data-quiz-step]");
+
+    if (
+      step &&
+      target instanceof HTMLInputElement &&
+      target.type === "checkbox" &&
+      target.name === "ocasion"
+    ) {
+      const occasionInputs = Array.from(step.querySelectorAll('input[type="checkbox"][name="ocasion"]'));
+      const noOccasion = occasionInputs.find((input) => input.id === "ocasionNinguna") || null;
+
+      if (target.id === "ocasionNinguna" && target.checked) {
+        occasionInputs.forEach((input) => {
+          if (input !== target) {
+            input.checked = false;
+          }
+        });
+      } else if (target.checked && noOccasion && noOccasion.checked) {
+        noOccasion.checked = false;
+      }
+    }
+
     if (step && target.type === "checkbox" && step.dataset.questionType === "multi-limit") {
       const maxSelect = Number(step.dataset.maxSelect || 2);
       const checked = Array.from(step.querySelectorAll("input[type='checkbox']:checked"));
@@ -636,6 +664,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     scheduleDraftSave();
+
+    if (
+      step &&
+      target instanceof HTMLInputElement &&
+      target.type === "checkbox" &&
+      target.name === "ocasion" &&
+      target.checked &&
+      isOnFirstQuestionStep() &&
+      isEarlyExitSelected()
+    ) {
+      submitQuiz();
+    }
   });
 
   if (nextButton) {
