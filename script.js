@@ -9,6 +9,7 @@ window.tailwind.config = {
         brand: {
           dark: "#100135",
           purple: "#640FEA",
+          paper: "#F9F7F2",
           white: "#FFFFFF",
           black: "#000000",
           green: "#0FFC7E",
@@ -409,6 +410,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
       stickyCtaTargets.forEach((target) => ctaObserver.observe(target));
       updateStickyCta();
+
+      // Additional logic for scroll-direction
+      let lastScrollY = window.scrollY;
+      let tickingScroll = false;
+
+      const handleScrollDirection = () => {
+        const currentScrollY = window.scrollY;
+        // Scroll down
+        if (currentScrollY > lastScrollY && currentScrollY > 200) {
+          if (isAfterFirstCta && visibleTargets.size === 0) {
+            setStickyCtaState(true);
+          }
+        }
+        // Scroll up
+        else if (currentScrollY < lastScrollY) {
+          setStickyCtaState(false);
+        }
+        lastScrollY = currentScrollY;
+      };
+
+      window.addEventListener("scroll", () => {
+        if (!tickingScroll) {
+          window.requestAnimationFrame(() => {
+            handleScrollDirection();
+            tickingScroll = false;
+          });
+          tickingScroll = true;
+        }
+      }, { passive: true });
+
     } else {
       let ticking = false;
 
@@ -444,6 +475,7 @@ document.addEventListener("DOMContentLoaded", () => {
     revealItems.forEach(makeVisible);
     markerItems.forEach(makeVisible);
     quoteItems.forEach(makeVisible);
+
     return;
   }
 
