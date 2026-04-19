@@ -1,0 +1,4 @@
+[[headers]]
+  for = "/belcanto-encuesta-r7q4x/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
