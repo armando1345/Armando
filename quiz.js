@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentStep = 0;
   let quizStarted = !quizShell;
   let isTransitioning = false;
+  let isSubmitting = false;
+  let draftSaveTimer = null;
+  let lastSavedDraftPayload = "";
 
   if (stepTotal) {
     stepTotal.textContent = `${stepCount}`;
@@ -122,6 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
         field.setAttribute("aria-invalid", "false");
       }
     });
+  };
+
+  const shouldUpdateConditionalFieldsFor = (target) => {
+    if (!(target instanceof HTMLInputElement) || target.type !== "radio" || conditionalFields.length === 0) {
+      return false;
+    }
+
+    return conditionalFields.some((field) => field.dataset.conditionalName === target.name);
   };
 
   const getValidationResult = (step) => {
@@ -372,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollToFormTop();
       }
 
-      saveDraft();
+      scheduleDraftSave({ immediate: true });
     };
 
     if (!previousStep || stepTransitionDuration === 0) {
@@ -392,7 +403,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, stepTransitionDuration);
   };
 
-  function saveDraft() {
+  const persistDraft = (options = {}) => {
+    const { force = false } = options;
     const payload = {
       step: currentStep,
       values: {}
@@ -406,12 +418,54 @@ document.addEventListener("DOMContentLoaded", () => {
       payload.values[field.id] = field.value;
     });
 
+    let serializedPayload = "";
     try {
-      localStorage.setItem(draftStorageKey, JSON.stringify(payload));
+      serializedPayload = JSON.stringify(payload);
+    } catch (error) {
+      return;
+    }
+
+    if (!force && serializedPayload === lastSavedDraftPayload) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(draftStorageKey, serializedPayload);
+      lastSavedDraftPayload = serializedPayload;
     } catch (error) {
       // No-op when localStorage is unavailable.
     }
-  }
+  };
+
+  const scheduleDraftSave = (options = {}) => {
+    const { immediate = false, force = false } = options;
+
+    if (draftSaveTimer !== null) {
+      window.clearTimeout(draftSaveTimer);
+      draftSaveTimer = null;
+    }
+
+    if (immediate) {
+      persistDraft({ force });
+      return;
+    }
+
+    draftSaveTimer = window.setTimeout(() => {
+      draftSaveTimer = null;
+      persistDraft({ force });
+    }, 120);
+  };
+
+  const flushDraftSave = (options = {}) => {
+    const { force = false } = options;
+
+    if (draftSaveTimer !== null) {
+      window.clearTimeout(draftSaveTimer);
+      draftSaveTimer = null;
+    }
+
+    persistDraft({ force });
+  };
 
   const restoreDraft = () => {
     try {
@@ -424,6 +478,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!parsedDraft || typeof parsedDraft !== "object") {
         return;
       }
+
+      lastSavedDraftPayload = storedDraft;
 
       if (typeof parsedDraft.values === "object" && parsedDraft.values !== null) {
         persistableFields.forEach((field) => {
@@ -521,6 +577,22 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const isChoiceInput = target instanceof HTMLInputElement && (target.type === "checkbox" || target.type === "radio");
+
+    if (isChoiceInput) {
+      if (
+        target instanceof HTMLInputElement &&
+        target.type === "radio" &&
+        target.name === "ocasion" &&
+        target.checked &&
+        isOnFirstQuestionStep() &&
+        isEarlyExitSelected()
+      ) {
+        submitQuiz();
+      }
+      return;
+    }
+
     const step = target.closest("[data-quiz-step]");
     if (step) {
       clearQuestionError(step);
@@ -528,19 +600,11 @@ document.addEventListener("DOMContentLoaded", () => {
       target.setAttribute("aria-invalid", "false");
     }
 
-    updateConditionalFields();
-    saveDraft();
-
-    if (
-      target instanceof HTMLInputElement &&
-      target.type === "radio" &&
-      target.name === "ocasion" &&
-      target.checked &&
-      isOnFirstQuestionStep() &&
-      isEarlyExitSelected()
-    ) {
-      submitQuiz();
+    if (shouldUpdateConditionalFieldsFor(target)) {
+      updateConditionalFields();
     }
+
+    scheduleDraftSave();
   });
 
   quizForm.addEventListener("change", (event) => {
@@ -567,8 +631,11 @@ document.addEventListener("DOMContentLoaded", () => {
       setStepError("");
     }
 
-    updateConditionalFields();
-    saveDraft();
+    if (shouldUpdateConditionalFieldsFor(target)) {
+      updateConditionalFields();
+    }
+
+    scheduleDraftSave({ immediate: true });
   });
 
   if (nextButton) {
@@ -694,12 +761,24 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    isSubmitting = true;
+    flushDraftSave({ force: true });
+
     try {
       localStorage.setItem(lastSubmissionKey, "quiz");
       localStorage.removeItem(draftStorageKey);
+      lastSavedDraftPayload = "";
     } catch (error) {
       // No-op.
     }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (isSubmitting) {
+      return;
+    }
+
+    flushDraftSave();
   });
 
   updateStepState({
