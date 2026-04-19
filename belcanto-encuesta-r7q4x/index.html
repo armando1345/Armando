@@ -72,21 +72,34 @@
       <div class="quiz-card" data-quiz-shell hidden>
         <form
           id="quizForm"
-          name="encuesta-musica-elegante"
+          name="belcanto-encuesta"
           class="booking-form quiz-form"
           method="POST"
           action="/gracias.html?form=quiz"
           netlify
           data-netlify="true"
+          data-netlify-honeypot="bot-field"
           netlify-honeypot="bot-field"
           novalidate
         >
-          <input type="hidden" name="form-name" value="encuesta-musica-elegante">
+          <!-- Netlify Forms: keep form-name aligned with the form name attribute -->
+          <input type="hidden" name="form-name" value="belcanto-encuesta">
           <input type="hidden" name="ruta_privada" value="belcanto-encuesta-r7q4x">
           <input type="hidden" name="origen" value="encuesta-musica-elegante-vivo">
-          <p class="hidden" style="display:none;">
-            <label>Don&rsquo;t fill this out: <input name="bot-field"></label>
+          <!-- Honeypot for bot filtering (Netlify) -->
+          <p class="quiz-sr-only">
+            <label for="botField">No completar este campo: <input id="botField" name="bot-field" autocomplete="off"></label>
           </p>
+          <!-- Hidden analytical fields: quiz.js sets response_id, UTMs, landing/referrer and timestamps -->
+          <input type="hidden" id="surveyVersion" name="survey_version" value="v2_analitica">
+          <input type="hidden" id="responseId" name="response_id" value="">
+          <input type="hidden" id="utmSource" name="utm_source" value="">
+          <input type="hidden" id="utmMedium" name="utm_medium" value="">
+          <input type="hidden" id="utmCampaign" name="utm_campaign" value="">
+          <input type="hidden" id="landingPage" name="landing_page" value="">
+          <input type="hidden" id="referrerUrl" name="referrer_url" value="">
+          <input type="hidden" id="startedAt" name="started_at" value="">
+          <input type="hidden" id="submittedAt" name="submitted_at" value="">
 
           <div class="quiz-progress">
             <p class="quiz-step-counter">Paso <span data-quiz-current-step>1</span> de <span data-quiz-total-steps>11</span></p>
@@ -110,27 +123,27 @@
             <legend class="quiz-step-title">1) &iquest;En cu&aacute;l de estas ocasiones te gustar&iacute;a m&aacute;s escuchar un grupo de cantantes clásicos en vivo?</legend>
             <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
             <div class="quiz-options" role="group" aria-label="Ocasiones preferidas">
-              <label class="quiz-option" for="ocasionBoda"><input id="ocasionBoda" type="checkbox" name="ocasion" value="Boda"><span>Boda</span></label>
-              <label class="quiz-option" for="ocasionCena"><input id="ocasionCena" type="checkbox" name="ocasion" value="Cena formal"><span>Cena formal</span></label>
-              <label class="quiz-option" for="ocasionEmpresa"><input id="ocasionEmpresa" type="checkbox" name="ocasion" value="Evento de empresa"><span>Evento de empresa</span></label>
-              <label class="quiz-option" for="ocasionTeatro"><input id="ocasionTeatro" type="checkbox" name="ocasion" value="Teatro o concierto"><span>Teatro o concierto</span></label>
-              <label class="quiz-option" for="ocasionFamiliar"><input id="ocasionFamiliar" type="checkbox" name="ocasion" value="Celebracion familiar"><span>Celebraci&oacute;n familiar</span></label>
-              <label class="quiz-option" for="ocasionReligioso"><input id="ocasionReligioso" type="checkbox" name="ocasion" value="Evento religioso o conmemorativo"><span>Evento religioso o conmemorativo</span></label>
-              <label class="quiz-option" for="ocasionHotel"><input id="ocasionHotel" type="checkbox" name="ocasion" value="Hotel o restaurante"><span>Hotel o restaurante</span></label>
-              <label class="quiz-option" for="ocasionNinguna"><input id="ocasionNinguna" type="checkbox" name="ocasion" value="Ninguna ocasion"><span>Ninguna ocasi&oacute;n</span></label>
-              <label class="quiz-option" for="ocasionNoSeguro"><input id="ocasionNoSeguro" type="checkbox" name="ocasion" value="No estoy seguro"><span>No estoy seguro</span></label>
-              <label class="quiz-option" for="ocasionOtraRadio"><input id="ocasionOtraRadio" type="checkbox" name="ocasion" value="otra" data-requires-text="ocasionOtra"><span>Otra</span></label>
+              <label class="quiz-option" for="ocasionBoda"><input id="ocasionBoda" type="checkbox" name="ocasion_boda" value="1"><span>Boda</span></label>
+              <label class="quiz-option" for="ocasionCena"><input id="ocasionCena" type="checkbox" name="ocasion_cena_formal" value="1"><span>Cena formal</span></label>
+              <label class="quiz-option" for="ocasionEmpresa"><input id="ocasionEmpresa" type="checkbox" name="ocasion_evento_empresa" value="1"><span>Evento de empresa</span></label>
+              <label class="quiz-option" for="ocasionTeatro"><input id="ocasionTeatro" type="checkbox" name="ocasion_teatro_concierto" value="1"><span>Teatro o concierto</span></label>
+              <label class="quiz-option" for="ocasionFamiliar"><input id="ocasionFamiliar" type="checkbox" name="ocasion_celebracion_familiar" value="1"><span>Celebraci&oacute;n familiar</span></label>
+              <label class="quiz-option" for="ocasionReligioso"><input id="ocasionReligioso" type="checkbox" name="ocasion_evento_religioso_conmemorativo" value="1"><span>Evento religioso o conmemorativo</span></label>
+              <label class="quiz-option" for="ocasionHotel"><input id="ocasionHotel" type="checkbox" name="ocasion_hotel_restaurante" value="1"><span>Hotel o restaurante</span></label>
+              <label class="quiz-option" for="ocasionNinguna"><input id="ocasionNinguna" type="checkbox" name="ocasion_ninguna" value="1"><span>Ninguna ocasi&oacute;n</span></label>
+              <label class="quiz-option" for="ocasionNoSeguro"><input id="ocasionNoSeguro" type="checkbox" name="ocasion_no_seguro" value="1"><span>No estoy seguro</span></label>
+              <label class="quiz-option" for="ocasionOtraRadio"><input id="ocasionOtraRadio" type="checkbox" name="ocasion_otra" value="1" data-requires-text="ocasionOtra"><span>Otra</span></label>
             </div>
             <div class="quiz-conditional" hidden>
               <label class="quiz-sr-only" for="ocasionOtra">Escribe otra ocasi&oacute;n</label>
               <input
                 id="ocasionOtra"
-                name="ocasion_otra"
+                name="ocasion_otra_texto"
                 type="text"
                 placeholder="Especifica"
                 autocomplete="off"
-                data-conditional-name="ocasion"
-                data-conditional-value="otra"
+                data-conditional-name="ocasion_otra"
+                data-conditional-value="1"
                 data-required-message="Escribe la otra ocasi&oacute;n para continuar."
               >
             </div>
@@ -141,12 +154,12 @@
             <legend class="quiz-step-title">2) &iquest;Qu&eacute; valoras m&aacute;s en una presentaci&oacute;n as&iacute;?</legend>
             <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
             <div class="quiz-options" role="group" aria-label="Valores principales">
-              <label class="quiz-option" for="valoraEmocione"><input id="valoraEmocione" type="checkbox" name="valoras" value="Que emocione"><span>Que emocione</span></label>
-              <label class="quiz-option" for="valoraElegante"><input id="valoraElegante" type="checkbox" name="valoras" value="Que suene elegante"><span>Que suene elegante</span></label>
-              <label class="quiz-option" for="valoraVocal"><input id="valoraVocal" type="checkbox" name="valoras" value="Que tenga gran calidad vocal"><span>Que tenga gran calidad vocal</span></label>
-              <label class="quiz-option" for="valoraConocidas"><input id="valoraConocidas" type="checkbox" name="valoras" value="Que incluya canciones conocidas"><span>Que incluya canciones conocidas</span></label>
-              <label class="quiz-option" for="valoraOriginal"><input id="valoraOriginal" type="checkbox" name="valoras" value="Que se sienta original"><span>Que se sienta original</span></label>
-              <label class="quiz-option" for="valoraAmbiente"><input id="valoraAmbiente" type="checkbox" name="valoras" value="Que acompa&ntilde;e bien el ambiente"><span>Que acompa&ntilde;e bien el ambiente</span></label>
+              <label class="quiz-option" for="valoraEmocione"><input id="valoraEmocione" type="checkbox" name="valora_emocion" value="1"><span>Que emocione</span></label>
+              <label class="quiz-option" for="valoraElegante"><input id="valoraElegante" type="checkbox" name="valora_elegancia" value="1"><span>Que suene elegante</span></label>
+              <label class="quiz-option" for="valoraVocal"><input id="valoraVocal" type="checkbox" name="valora_calidad_vocal" value="1"><span>Que tenga gran calidad vocal</span></label>
+              <label class="quiz-option" for="valoraConocidas"><input id="valoraConocidas" type="checkbox" name="valora_canciones_conocidas" value="1"><span>Que incluya canciones conocidas</span></label>
+              <label class="quiz-option" for="valoraOriginal"><input id="valoraOriginal" type="checkbox" name="valora_originalidad" value="1"><span>Que se sienta original</span></label>
+              <label class="quiz-option" for="valoraAmbiente"><input id="valoraAmbiente" type="checkbox" name="valora_acompanamiento_ambiente" value="1"><span>Que acompa&ntilde;e bien el ambiente</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
@@ -187,11 +200,11 @@
             <legend class="quiz-step-title">5) &iquest;Cu&aacute;l de estos estilos te llama m&aacute;s la atenci&oacute;n para un grupo as&iacute;?</legend>
             <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
             <div class="quiz-options" role="group" aria-label="Estilo preferido">
-              <label class="quiz-option" for="estiloRomanticas"><input id="estiloRomanticas" type="checkbox" name="estilo_preferido" value="Canciones romanticas conocidas"><span>Canciones rom&aacute;nticas conocidas</span></label>
-              <label class="quiz-option" for="estiloBoleros"><input id="estiloBoleros" type="checkbox" name="estilo_preferido" value="Baladas y boleros"><span>Baladas y boleros</span></label>
-              <label class="quiz-option" for="estiloMusicales"><input id="estiloMusicales" type="checkbox" name="estilo_preferido" value="Canciones de peliculas o musicales"><span>Canciones de pel&iacute;culas o musicales</span></label>
-              <label class="quiz-option" for="estiloClasico"><input id="estiloClasico" type="checkbox" name="estilo_preferido" value="Canciones mas formales o de estilo clasico"><span>Canciones m&aacute;s formales o de estilo cl&aacute;sico</span></label>
-              <label class="quiz-option" for="estiloMezcla"><input id="estiloMezcla" type="checkbox" name="estilo_preferido" value="Una mezcla de varias de las anteriores"><span>Una mezcla de varias de las anteriores</span></label>
+              <label class="quiz-option" for="estiloRomanticas"><input id="estiloRomanticas" type="checkbox" name="estilo_romanticas_conocidas" value="1"><span>Canciones rom&aacute;nticas conocidas</span></label>
+              <label class="quiz-option" for="estiloBoleros"><input id="estiloBoleros" type="checkbox" name="estilo_baladas_boleros" value="1"><span>Baladas y boleros</span></label>
+              <label class="quiz-option" for="estiloMusicales"><input id="estiloMusicales" type="checkbox" name="estilo_peliculas_musicales" value="1"><span>Canciones de pel&iacute;culas o musicales</span></label>
+              <label class="quiz-option" for="estiloClasico"><input id="estiloClasico" type="checkbox" name="estilo_formal_clasico" value="1"><span>Canciones m&aacute;s formales o de estilo cl&aacute;sico</span></label>
+              <label class="quiz-option" for="estiloMezcla"><input id="estiloMezcla" type="checkbox" name="estilo_mezcla_estilos" value="1"><span>Una mezcla de varias de las anteriores</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
@@ -199,11 +212,11 @@
           <fieldset class="quiz-step" data-quiz-step data-step-title="6" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
             <legend class="quiz-step-title">6) &iquest;Qu&eacute; combinaci&oacute;n te gustar&iacute;a m&aacute;s?</legend>
             <div class="quiz-options" role="radiogroup" aria-label="Combinaci&oacute;n musical">
-              <label class="quiz-option" for="combo1"><input id="combo1" type="radio" name="combinacion" value="Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes"><span>Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo2"><input id="combo2" type="radio" name="combinacion" value="Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo3"><input id="combo3" type="radio" name="combinacion" value="Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes"><span>Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo4"><input id="combo4" type="radio" name="combinacion" value="Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo5"><input id="combo5" type="radio" name="combinacion" value="1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes"><span>1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo1"><input id="combo1" type="radio" name="combinacion_preferida" value="casi_todo_conocidas_con_1_2_clasicas"><span>Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo2"><input id="combo2" type="radio" name="combinacion_preferida" value="seis_siete_conocidas_y_tres_cuatro_clasicas"><span>Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo3"><input id="combo3" type="radio" name="combinacion_preferida" value="mitad_conocidas_mitad_clasicas"><span>Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo4"><input id="combo4" type="radio" name="combinacion_preferida" value="tres_cuatro_conocidas_y_seis_siete_clasicas"><span>Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo5"><input id="combo5" type="radio" name="combinacion_preferida" value="una_dos_conocidas_y_casi_todas_clasicas"><span>1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
@@ -211,24 +224,24 @@
           <fieldset class="quiz-step" data-quiz-step data-step-title="7" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
             <legend class="quiz-step-title">7) &iquest;Qu&eacute; idiomas te resultan m&aacute;s atractivos en las canciones?</legend>
             <div class="quiz-options" role="radiogroup" aria-label="Idiomas preferidos">
-              <label class="quiz-option" for="idiomaSoloEs"><input id="idiomaSoloEs" type="radio" name="idiomas" value="Solo espanol"><span>Solo espa&ntilde;ol</span></label>
-              <label class="quiz-option" for="idiomaMayorEs"><input id="idiomaMayorEs" type="radio" name="idiomas" value="Mayormente espanol con algunas en otros idiomas"><span>Mayormente espa&ntilde;ol con algunas en otros idiomas</span></label>
-              <label class="quiz-option" for="idiomaEsIt"><input id="idiomaEsIt" type="radio" name="idiomas" value="Espanol e italiano"><span>Espa&ntilde;ol e italiano</span></label>
-              <label class="quiz-option" for="idiomaEsEn"><input id="idiomaEsEn" type="radio" name="idiomas" value="Espanol e ingles"><span>Espa&ntilde;ol e ingl&eacute;s</span></label>
-              <label class="quiz-option" for="idiomaMezcla"><input id="idiomaMezcla" type="radio" name="idiomas" value="Mezcla de varios idiomas"><span>Mezcla de varios idiomas</span></label>
-              <label class="quiz-option" for="idiomaIndiferente"><input id="idiomaIndiferente" type="radio" name="idiomas" value="Me es indiferente"><span>Me es indiferente</span></label>
-              <label class="quiz-option" for="idiomaOtraRadio"><input id="idiomaOtraRadio" type="radio" name="idiomas" value="otra" data-requires-text="idiomaOtra"><span>Otro</span></label>
+              <label class="quiz-option" for="idiomaSoloEs"><input id="idiomaSoloEs" type="radio" name="idioma_preferido" value="solo_espanol"><span>Solo espa&ntilde;ol</span></label>
+              <label class="quiz-option" for="idiomaMayorEs"><input id="idiomaMayorEs" type="radio" name="idioma_preferido" value="mayormente_espanol_con_otros"><span>Mayormente espa&ntilde;ol con algunas en otros idiomas</span></label>
+              <label class="quiz-option" for="idiomaEsIt"><input id="idiomaEsIt" type="radio" name="idioma_preferido" value="espanol_italiano"><span>Espa&ntilde;ol e italiano</span></label>
+              <label class="quiz-option" for="idiomaEsEn"><input id="idiomaEsEn" type="radio" name="idioma_preferido" value="espanol_ingles"><span>Espa&ntilde;ol e ingl&eacute;s</span></label>
+              <label class="quiz-option" for="idiomaMezcla"><input id="idiomaMezcla" type="radio" name="idioma_preferido" value="mezcla_varios_idiomas"><span>Mezcla de varios idiomas</span></label>
+              <label class="quiz-option" for="idiomaIndiferente"><input id="idiomaIndiferente" type="radio" name="idioma_preferido" value="indiferente"><span>Me es indiferente</span></label>
+              <label class="quiz-option" for="idiomaOtraRadio"><input id="idiomaOtraRadio" type="radio" name="idioma_preferido" value="otro" data-requires-text="idiomaOtra"><span>Otro</span></label>
             </div>
             <div class="quiz-conditional" hidden>
               <label class="quiz-sr-only" for="idiomaOtra">Escribe otro idioma</label>
               <input
                 id="idiomaOtra"
-                name="idiomas_otra"
+                name="idioma_otro_texto"
                 type="text"
                 placeholder="Especifica"
                 autocomplete="off"
-                data-conditional-name="idiomas"
-                data-conditional-value="otra"
+                data-conditional-name="idioma_preferido"
+                data-conditional-value="otro"
                 data-required-message="Escribe el otro idioma para continuar."
               >
             </div>
@@ -239,12 +252,12 @@
             <legend class="quiz-step-title">8) &iquest;Qu&eacute; emoci&oacute;n te gustar&iacute;a sentir m&aacute;s en las canciones?</legend>
             <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
             <div class="quiz-options" role="group" aria-label="Emoci&oacute;n principal">
-              <label class="quiz-option" for="emocionRomance"><input id="emocionRomance" type="checkbox" name="emocion" value="Romance"><span>Romance</span></label>
-              <label class="quiz-option" for="emocionNostalgia"><input id="emocionNostalgia" type="checkbox" name="emocion" value="Nostalgia"><span>Nostalgia</span></label>
-              <label class="quiz-option" for="emocionInspiracion"><input id="emocionInspiracion" type="checkbox" name="emocion" value="Inspiracion"><span>Inspiraci&oacute;n</span></label>
-              <label class="quiz-option" for="emocionSolemnidad"><input id="emocionSolemnidad" type="checkbox" name="emocion" value="Solemnidad"><span>Solemnidad</span></label>
-              <label class="quiz-option" for="emocionAlegria"><input id="emocionAlegria" type="checkbox" name="emocion" value="Alegria"><span>Alegr&iacute;a</span></label>
-              <label class="quiz-option" for="emocionEquilibrio"><input id="emocionEquilibrio" type="checkbox" name="emocion" value="Equilibrio entre varias"><span>Equilibrio entre varias</span></label>
+              <label class="quiz-option" for="emocionRomance"><input id="emocionRomance" type="checkbox" name="emocion_romance" value="1"><span>Romance</span></label>
+              <label class="quiz-option" for="emocionNostalgia"><input id="emocionNostalgia" type="checkbox" name="emocion_nostalgia" value="1"><span>Nostalgia</span></label>
+              <label class="quiz-option" for="emocionInspiracion"><input id="emocionInspiracion" type="checkbox" name="emocion_inspiracion" value="1"><span>Inspiraci&oacute;n</span></label>
+              <label class="quiz-option" for="emocionSolemnidad"><input id="emocionSolemnidad" type="checkbox" name="emocion_solemnidad" value="1"><span>Solemnidad</span></label>
+              <label class="quiz-option" for="emocionAlegria"><input id="emocionAlegria" type="checkbox" name="emocion_alegria" value="1"><span>Alegr&iacute;a</span></label>
+              <label class="quiz-option" for="emocionEquilibrio"><input id="emocionEquilibrio" type="checkbox" name="emocion_equilibrio_varias" value="1"><span>Equilibrio entre varias</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
