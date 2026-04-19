@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 30" preserveAspectRatio="none">
+  <!-- Organic, uneven body of the brush stroke -->
+  <path d="M 4,18 C 25,11 90,19 160,14 C 230,9 270,18 296,12 C 293,7 230,3 150,6 C 80,9 20,4 4,18 Z" fill="#640FEA" opacity="0.9"/>
+  <!-- Some stray brush hairs or lighter textures to give a dry brush feel -->
+  <path d="M 2,16 C 60,20 130,9 210,12 C 260,14 285,16 299,10" stroke="#8A49FF" stroke-width="2" fill="none" opacity="0.8" stroke-linecap="round"/>
+  <path d="M 15,14 C 90,11 160,13 230,9" stroke="#370782" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+</svg>
