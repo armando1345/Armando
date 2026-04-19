@@ -1777,6 +1777,43 @@ body.modal-open {
   .quiz-scale-option,
   .quiz-btn {
     transition-duration: 0.08s;
+    transition-property: border-color, background-color, opacity;
+  }
+
+  .quiz-step {
+    box-shadow: 0 6px 14px rgba(16, 1, 53, 0.08);
+  }
+
+  .quiz-step.is-active,
+  .quiz-step.is-active.is-leaving {
+    animation: none;
+    transform: none;
+  }
+
+  .quiz-step[data-question-type="multi-limit"] {
+    contain: paint;
+    overflow: hidden;
+  }
+
+  .quiz-step[data-question-type="multi-limit"] .quiz-options {
+    contain: paint;
+  }
+
+  .quiz-step[data-question-type="multi-limit"] .quiz-option {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    background-clip: padding-box;
+  }
+
+  .quiz-btn,
+  .quiz-btn:hover,
+  .quiz-btn:active {
+    filter: none;
+    transform: none;
+    box-shadow:
+      0 2px 0 var(--quiz-btn-shadow-edge),
+      0 6px 10px rgba(16, 1, 53, 0.12);
   }
 }
 
