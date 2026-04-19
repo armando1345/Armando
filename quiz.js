@@ -22,6 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const progressFill = quizForm.querySelector("[data-quiz-progress-fill]");
   const stepError = quizForm.querySelector("#quizStepError");
   const liveRegion = quizForm.querySelector("#quizLiveRegion");
+  const responseIdField = quizForm.querySelector("#responseId");
+  const utmSourceField = quizForm.querySelector("#utmSource");
+  const utmMediumField = quizForm.querySelector("#utmMedium");
+  const utmCampaignField = quizForm.querySelector("#utmCampaign");
+  const landingPageField = quizForm.querySelector("#landingPage");
+  const referrerUrlField = quizForm.querySelector("#referrerUrl");
+  const startedAtField = quizForm.querySelector("#startedAt");
+  const submittedAtField = quizForm.querySelector("#submittedAt");
 
   const conditionalFields = Array.from(quizForm.querySelectorAll("[data-conditional-name]"));
   const persistableFields = Array.from(quizForm.querySelectorAll("input, textarea, select"))
@@ -45,6 +53,52 @@ document.addEventListener("DOMContentLoaded", () => {
   if (stepTotal) {
     stepTotal.textContent = `${stepCount}`;
   }
+
+  const buildFallbackResponseId = () => {
+    const randomPart = Math.random().toString(36).slice(2, 12);
+    return `resp_${Date.now().toString(36)}_${randomPart}`;
+  };
+
+  const generateResponseId = () => {
+    // response_id: use native UUID when available, with a stable fallback.
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      return window.crypto.randomUUID();
+    }
+    return buildFallbackResponseId();
+  };
+
+  const initializeAnalyticsFields = () => {
+    // Hidden analytics fields for Netlify Forms: UTMs, landing, referrer and timestamps.
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (responseIdField && !responseIdField.value) {
+      responseIdField.value = generateResponseId();
+    }
+
+    if (startedAtField && !startedAtField.value) {
+      startedAtField.value = new Date().toISOString();
+    }
+
+    if (utmSourceField) {
+      utmSourceField.value = searchParams.get("utm_source") || "";
+    }
+
+    if (utmMediumField) {
+      utmMediumField.value = searchParams.get("utm_medium") || "";
+    }
+
+    if (utmCampaignField) {
+      utmCampaignField.value = searchParams.get("utm_campaign") || "";
+    }
+
+    if (landingPageField) {
+      landingPageField.value = window.location.href;
+    }
+
+    if (referrerUrlField) {
+      referrerUrlField.value = document.referrer || "";
+    }
+  };
 
   const getStepTitle = (stepIndex) => {
     const step = quizSteps[stepIndex];
@@ -106,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const updateConditionalFields = () => {
+    // "Otra/Otro" logic: show or hide the linked field, require it only when visible, clear it when hidden.
     conditionalFields.forEach((field) => {
       const name = field.dataset.conditionalName;
       const expectedValue = field.dataset.conditionalValue;
@@ -119,9 +174,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       wrapper.hidden = !shouldShow;
       field.disabled = !shouldShow;
+      field.required = shouldShow;
 
       if (!shouldShow) {
         field.value = "";
+        field.required = false;
         field.setAttribute("aria-invalid", "false");
       }
     });
@@ -586,6 +643,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
+  initializeAnalyticsFields();
   restoreDraft();
 
   quizForm.addEventListener("input", (event) => {
@@ -626,10 +684,11 @@ document.addEventListener("DOMContentLoaded", () => {
       step &&
       target instanceof HTMLInputElement &&
       target.type === "checkbox" &&
-      target.name === "ocasion"
+      firstQuestionStep &&
+      step === firstQuestionStep
     ) {
-      const occasionInputs = Array.from(step.querySelectorAll('input[type="checkbox"][name="ocasion"]'));
-      const noOccasion = occasionInputs.find((input) => input.id === "ocasionNinguna") || null;
+      const occasionInputs = Array.from(step.querySelectorAll('input[type="checkbox"]'));
+      const noOccasion = noOccasionOption && step.contains(noOccasionOption) ? noOccasionOption : null;
 
       if (target.id === "ocasionNinguna" && target.checked) {
         occasionInputs.forEach((input) => {
@@ -669,7 +728,7 @@ document.addEventListener("DOMContentLoaded", () => {
       step &&
       target instanceof HTMLInputElement &&
       target.type === "checkbox" &&
-      target.name === "ocasion" &&
+      target.id === "ocasionNinguna" &&
       target.checked &&
       isOnFirstQuestionStep() &&
       isEarlyExitSelected()
@@ -802,6 +861,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     isSubmitting = true;
+    if (submittedAtField) {
+      submittedAtField.value = new Date().toISOString();
+    }
     flushDraftSave({ force: true });
 
     try {
