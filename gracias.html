@@ -17,17 +17,17 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Solicitud recibida para Asesor&iacute;a Armand&eacute;fica.">
-  <meta property="og:title" content="Solicitud recibida | Asesor&iacute;a Armand&eacute;fica">
-  <meta property="og:description" content="Solicitud recibida. Te escribir&eacute; pronto.">
+  <meta name="description" content="Encuesta finalizada para Asesor&iacute;a Armand&eacute;fica.">
+  <meta property="og:title" content="Encuesta finalizada | Asesor&iacute;a Armand&eacute;fica">
+  <meta property="og:description" content="Recib&iacute; tu respuesta. Gracias por colaborar.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Solicitud recibida | Asesor&iacute;a Armand&eacute;fica">
-  <meta name="twitter:description" content="Solicitud recibida. Te escribir&eacute; pronto.">
+  <meta name="twitter:title" content="Encuesta finalizada | Asesor&iacute;a Armand&eacute;fica">
+  <meta name="twitter:description" content="Recib&iacute; tu respuesta. Gracias por colaborar.">
   <meta name="twitter:image" content="https://res.cloudinary.com/dul66qlpq/image/upload/v1767650018/yo_pbzt1c.png">
-  <title>Solicitud recibida | Asesor&iacute;a Armand&eacute;fica</title>
+  <title>Encuesta finalizada | Asesor&iacute;a Armand&eacute;fica</title>
   <link rel="icon" type="image/svg+xml" href="https://res.cloudinary.com/dul66qlpq/image/upload/v1763566644/favicon_armando_x91po3.svg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,21 +62,17 @@
           </svg>
         </div>
 
-        <p class="thanks-kicker" data-thanks-kicker>Solicitud recibida</p>
-        <h1 class="thanks-title" data-thanks-title>Solicitud recibida. Te escribir&eacute; pronto.</h1>
-        <p class="thanks-copy" data-thanks-copy>Gracias por enviar tu solicitud.</p>
+        <p class="thanks-kicker" data-thanks-kicker>Encuesta finalizada</p>
+        <h1 class="thanks-title" data-thanks-title>Recib&iacute; tu respuesta. Gracias por colaborar</h1>
+        <p class="thanks-copy" data-thanks-copy>Todo lo que has dicho ser&aacute; de mucha ayuda para este estudio</p>
 
-        <a href="index.html" class="cta-secondary thanks-cta font-black transition-all duration-300 uppercase">
-          <span class="cta-label cta-label-stacked">
-            <span class="cta-label-text">Volver al inicio</span>
-            <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
-              <svg class="cta-arrow-icon" viewBox="0 0 48 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                <path d="M2 8H42" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                <path d="M34 2L42 8L34 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </span>
-        </a>
+        <section class="thanks-interest" aria-label="Contenido recomendado">
+          <p class="thanks-interest-label">Tal vez te puede interesar</p>
+          <a href="/index.html" class="thanks-interest-card" aria-label="Ir a la p&aacute;gina principal">
+            <span class="thanks-interest-title">Asesor&iacute;a Armand&eacute;fica</span>
+            <span class="thanks-interest-copy">Conoce c&oacute;mo puedo ayudarte a mejorar los ingresos de tu negocio online en solo 60 d&iacute;as (con resultados 100% garantizados)</span>
+          </a>
+        </section>
 
         <div class="thanks-sparks" aria-hidden="true">
           <span></span>
@@ -119,13 +115,13 @@
       var copy = document.querySelector("[data-thanks-copy]");
 
       if (kicker) {
-        kicker.textContent = "Cuestionario completado";
+        kicker.textContent = "Encuesta finalizada";
       }
       if (title) {
-        title.textContent = "Cuestionario enviado correctamente";
+        title.textContent = "Recib\u00ed tu respuesta. Gracias por colaborar";
       }
       if (copy) {
-        copy.textContent = "Gracias. Ya recibimos tus respuestas y pronto recibir\u00e1s la devoluci\u00f3n.";
+        copy.textContent = "Todo lo que has dicho ser\u00e1 de mucha ayuda para este estudio";
       }
 
       try {
