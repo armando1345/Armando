@@ -196,30 +196,28 @@
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="6" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="6" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
             <legend class="quiz-step-title">6) &iquest;Qu&eacute; combinaci&oacute;n te gustar&iacute;a m&aacute;s?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Combinaci&oacute;n musical">
-              <label class="quiz-option" for="combo1"><input id="combo1" type="checkbox" name="combinacion" value="Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes"><span>Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo2"><input id="combo2" type="checkbox" name="combinacion" value="Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo3"><input id="combo3" type="checkbox" name="combinacion" value="Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes"><span>Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo4"><input id="combo4" type="checkbox" name="combinacion" value="Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo5"><input id="combo5" type="checkbox" name="combinacion" value="1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes"><span>1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes</span></label>
+            <div class="quiz-options" role="radiogroup" aria-label="Combinaci&oacute;n musical">
+              <label class="quiz-option" for="combo1"><input id="combo1" type="radio" name="combinacion" value="Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes"><span>Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo2"><input id="combo2" type="radio" name="combinacion" value="Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo3"><input id="combo3" type="radio" name="combinacion" value="Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes"><span>Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo4"><input id="combo4" type="radio" name="combinacion" value="Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes"><span>Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes</span></label>
+              <label class="quiz-option" for="combo5"><input id="combo5" type="radio" name="combinacion" value="1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes"><span>1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="7" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="7" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
             <legend class="quiz-step-title">7) &iquest;Qu&eacute; idiomas te resultan m&aacute;s atractivos en las canciones?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Idiomas preferidos">
-              <label class="quiz-option" for="idiomaSoloEs"><input id="idiomaSoloEs" type="checkbox" name="idiomas" value="Solo espanol"><span>Solo espa&ntilde;ol</span></label>
-              <label class="quiz-option" for="idiomaMayorEs"><input id="idiomaMayorEs" type="checkbox" name="idiomas" value="Mayormente espanol con algunas en otros idiomas"><span>Mayormente espa&ntilde;ol con algunas en otros idiomas</span></label>
-              <label class="quiz-option" for="idiomaEsIt"><input id="idiomaEsIt" type="checkbox" name="idiomas" value="Espanol e italiano"><span>Espa&ntilde;ol e italiano</span></label>
-              <label class="quiz-option" for="idiomaEsEn"><input id="idiomaEsEn" type="checkbox" name="idiomas" value="Espanol e ingles"><span>Espa&ntilde;ol e ingl&eacute;s</span></label>
-              <label class="quiz-option" for="idiomaMezcla"><input id="idiomaMezcla" type="checkbox" name="idiomas" value="Mezcla de varios idiomas"><span>Mezcla de varios idiomas</span></label>
-              <label class="quiz-option" for="idiomaIndiferente"><input id="idiomaIndiferente" type="checkbox" name="idiomas" value="Me es indiferente"><span>Me es indiferente</span></label>
-              <label class="quiz-option" for="idiomaOtraRadio"><input id="idiomaOtraRadio" type="checkbox" name="idiomas" value="otra" data-requires-text="idiomaOtra"><span>Otro</span></label>
+            <div class="quiz-options" role="radiogroup" aria-label="Idiomas preferidos">
+              <label class="quiz-option" for="idiomaSoloEs"><input id="idiomaSoloEs" type="radio" name="idiomas" value="Solo espanol"><span>Solo espa&ntilde;ol</span></label>
+              <label class="quiz-option" for="idiomaMayorEs"><input id="idiomaMayorEs" type="radio" name="idiomas" value="Mayormente espanol con algunas en otros idiomas"><span>Mayormente espa&ntilde;ol con algunas en otros idiomas</span></label>
+              <label class="quiz-option" for="idiomaEsIt"><input id="idiomaEsIt" type="radio" name="idiomas" value="Espanol e italiano"><span>Espa&ntilde;ol e italiano</span></label>
+              <label class="quiz-option" for="idiomaEsEn"><input id="idiomaEsEn" type="radio" name="idiomas" value="Espanol e ingles"><span>Espa&ntilde;ol e ingl&eacute;s</span></label>
+              <label class="quiz-option" for="idiomaMezcla"><input id="idiomaMezcla" type="radio" name="idiomas" value="Mezcla de varios idiomas"><span>Mezcla de varios idiomas</span></label>
+              <label class="quiz-option" for="idiomaIndiferente"><input id="idiomaIndiferente" type="radio" name="idiomas" value="Me es indiferente"><span>Me es indiferente</span></label>
+              <label class="quiz-option" for="idiomaOtraRadio"><input id="idiomaOtraRadio" type="radio" name="idiomas" value="otra" data-requires-text="idiomaOtra"><span>Otro</span></label>
             </div>
             <div class="quiz-conditional" hidden>
               <label class="quiz-sr-only" for="idiomaOtra">Escribe otro idioma</label>
