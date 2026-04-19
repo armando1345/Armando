@@ -635,7 +635,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateConditionalFields();
     }
 
-    scheduleDraftSave({ immediate: true });
+    scheduleDraftSave();
   });
 
   if (nextButton) {
