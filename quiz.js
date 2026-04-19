@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const quizForm = document.querySelector("#quizForm");
   if (!quizForm) {
     return;
@@ -33,6 +33,8 @@
   const introTransitionDuration = prefersReducedMotion ? 0 : 220;
   const shellEnterDuration = prefersReducedMotion ? 0 : 320;
   const stepCount = quizSteps.length;
+  const firstQuestionStep = quizSteps.find((step) => step.dataset.stepTitle === "1") || quizSteps[1] || null;
+  const noOccasionOption = quizForm.querySelector("#ocasionNinguna");
   let currentStep = 0;
   let quizStarted = !quizShell;
   let isTransitioning = false;
@@ -280,6 +282,34 @@
     nextButton.textContent = "Siguiente pregunta";
   };
 
+  const isEarlyExitSelected = () => {
+    return Boolean(
+      noOccasionOption &&
+      noOccasionOption instanceof HTMLInputElement &&
+      noOccasionOption.checked
+    );
+  };
+
+  const isOnFirstQuestionStep = () => {
+    if (!firstQuestionStep) {
+      return false;
+    }
+    return quizSteps[currentStep] === firstQuestionStep;
+  };
+
+  const submitQuiz = () => {
+    if (isTransitioning) {
+      return;
+    }
+
+    if (typeof quizForm.requestSubmit === "function") {
+      quizForm.requestSubmit();
+      return;
+    }
+
+    quizForm.submit();
+  };
+
   const updateStepState = (options = {}) => {
     const { announce = true, focusFirstField = false } = options;
 
@@ -500,6 +530,17 @@
 
     updateConditionalFields();
     saveDraft();
+
+    if (
+      target instanceof HTMLInputElement &&
+      target.type === "radio" &&
+      target.name === "ocasion" &&
+      target.checked &&
+      isOnFirstQuestionStep() &&
+      isEarlyExitSelected()
+    ) {
+      submitQuiz();
+    }
   });
 
   quizForm.addEventListener("change", (event) => {
@@ -543,6 +584,11 @@
       });
 
       if (!isStepValid) {
+        return;
+      }
+
+      if (isOnFirstQuestionStep() && isEarlyExitSelected()) {
+        submitQuiz();
         return;
       }
 
@@ -611,25 +657,41 @@
       return;
     }
 
-    if (currentStep !== stepCount - 1) {
+    const earlyExitSubmission = isEarlyExitSelected();
+
+    if (!earlyExitSubmission && currentStep !== stepCount - 1) {
       event.preventDefault();
       return;
     }
 
-    const currentStepValid = validateStep(quizSteps[currentStep], {
-      focusFirstInvalid: true,
-      silent: false
-    });
+    if (earlyExitSubmission) {
+      if (firstQuestionStep) {
+        const firstStepValid = validateStep(firstQuestionStep, {
+          focusFirstInvalid: true,
+          silent: false
+        });
 
-    if (!currentStepValid) {
-      event.preventDefault();
-      return;
-    }
+        if (!firstStepValid) {
+          event.preventDefault();
+          return;
+        }
+      }
+    } else {
+      const currentStepValid = validateStep(quizSteps[currentStep], {
+        focusFirstInvalid: true,
+        silent: false
+      });
 
-    const allStepsValid = validateAllStepsBeforeSubmit();
-    if (!allStepsValid) {
-      event.preventDefault();
-      return;
+      if (!currentStepValid) {
+        event.preventDefault();
+        return;
+      }
+
+      const allStepsValid = validateAllStepsBeforeSubmit();
+      if (!allStepsValid) {
+        event.preventDefault();
+        return;
+      }
     }
 
     try {
