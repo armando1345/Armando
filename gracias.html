@@ -38,7 +38,7 @@
   <script src="script.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-sans text-brand-dark bg-white antialiased booking-page">
+<body class="font-sans text-brand-dark bg-brand-paper antialiased booking-page thanks-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T9GKXZ2G"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -51,14 +51,22 @@
     </a>
   </nav>
 
-  <main id="contenido" role="main" class="letter-main booking-main px-4 md:px-8">
-    <section class="letter-section booking-section">
-      <div class="letter-flow booking-header reveal" style="--delay: 0.05s;">
-        <h1 class="booking-title text-brand-dark">Solicitud recibida. Te escribir&eacute; pronto.</h1>
-        <p class="booking-highlight">
-          Gracias por enviar tu solicitud.
-        </p>
-        <a href="index.html" class="cta-secondary font-black transition-all duration-300 uppercase">
+  <main id="contenido" role="main" class="letter-main thanks-main px-4 md:px-8">
+    <section class="thanks-section reveal" style="--delay: 0.05s;">
+      <article class="thanks-card" aria-live="polite">
+        <div class="thanks-badge" aria-hidden="true">
+          <span class="thanks-ring thanks-ring-outer"></span>
+          <span class="thanks-ring thanks-ring-inner"></span>
+          <svg class="thanks-check-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+            <path d="M14 25L21.5 32.5L35 18.5" stroke="currentColor" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <p class="thanks-kicker" data-thanks-kicker>Solicitud recibida</p>
+        <h1 class="thanks-title" data-thanks-title>Solicitud recibida. Te escribir&eacute; pronto.</h1>
+        <p class="thanks-copy" data-thanks-copy>Gracias por enviar tu solicitud.</p>
+
+        <a href="index.html" class="cta-secondary thanks-cta font-black transition-all duration-300 uppercase">
           <span class="cta-label cta-label-stacked">
             <span class="cta-label-text">Volver al inicio</span>
             <span class="cta-arrow cta-arrow-stacked" aria-hidden="true">
@@ -69,7 +77,16 @@
             </span>
           </span>
         </a>
-      </div>
+
+        <div class="thanks-sparks" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -77,5 +94,46 @@
     <img src="https://res.cloudinary.com/dul66qlpq/image/upload/v1758995973/logo_armando_pug17v.svg" alt="Logo Armando" class="h-10 w-auto mx-auto mb-6 opacity-80" loading="lazy">
     <p class="text-brand-dark text-sm font-light">&copy; 2026 <strong>Asesor&iacute;a Armand&eacute;fica</strong>. Todos los derechos reservados.</p>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var params = new URLSearchParams(window.location.search);
+      var isQuizSubmission = params.get("form") === "quiz";
+
+      if (!isQuizSubmission) {
+        try {
+          isQuizSubmission = localStorage.getItem("armandefica_last_submission") === "quiz";
+        } catch (error) {
+          isQuizSubmission = false;
+        }
+      }
+
+      if (!isQuizSubmission) {
+        return;
+      }
+
+      document.body.classList.add("thanks-quiz-mode");
+
+      var kicker = document.querySelector("[data-thanks-kicker]");
+      var title = document.querySelector("[data-thanks-title]");
+      var copy = document.querySelector("[data-thanks-copy]");
+
+      if (kicker) {
+        kicker.textContent = "Cuestionario completado";
+      }
+      if (title) {
+        title.textContent = "Cuestionario enviado correctamente";
+      }
+      if (copy) {
+        copy.textContent = "Gracias. Ya recibimos tus respuestas y pronto recibir\u00e1s la devoluci\u00f3n.";
+      }
+
+      try {
+        localStorage.removeItem("armandefica_last_submission");
+      } catch (error) {
+        // No-op.
+      }
+    });
+  </script>
 </body>
 </html>
