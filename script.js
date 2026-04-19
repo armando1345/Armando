@@ -51,6 +51,14 @@ document.addEventListener("DOMContentLoaded", () => {
     element.classList.add("is-visible");
   };
 
+  // Let the browser paint the pre-animation state first so above-the-fold
+  // reveals still animate on fast production deployments.
+  const afterNextPaint = (callback) => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(callback);
+    });
+  };
+
   const setStickyCtaState = (shouldShow) => {
     if (!stickyCta) {
       return;
@@ -485,7 +493,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!entry.isIntersecting) {
           return;
         }
-        makeVisible(entry.target);
+        window.requestAnimationFrame(() => {
+          makeVisible(entry.target);
+        });
         observer.unobserve(entry.target);
       });
     },
@@ -495,7 +505,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  revealItems.forEach((item) => revealObserver.observe(item));
+  afterNextPaint(() => {
+    revealItems.forEach((item) => revealObserver.observe(item));
+  });
 
   const markerObserver = new IntersectionObserver(
     (entries, observer) => {
@@ -503,7 +515,9 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!entry.isIntersecting) {
           return;
         }
-        entry.target.classList.add("is-visible");
+        window.requestAnimationFrame(() => {
+          entry.target.classList.add("is-visible");
+        });
         observer.unobserve(entry.target);
       });
     },
@@ -513,7 +527,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 
-  markerItems.forEach((item) => markerObserver.observe(item));
+  afterNextPaint(() => {
+    markerItems.forEach((item) => markerObserver.observe(item));
+  });
 
   if (quoteItems.length) {
     const quoteObserver = new IntersectionObserver(
@@ -522,7 +538,9 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!entry.isIntersecting) {
             return;
           }
-          entry.target.classList.add("is-visible");
+          window.requestAnimationFrame(() => {
+            entry.target.classList.add("is-visible");
+          });
           observer.unobserve(entry.target);
         });
       },
@@ -532,7 +550,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
-    quoteItems.forEach((item) => quoteObserver.observe(item));
+    afterNextPaint(() => {
+      quoteItems.forEach((item) => quoteObserver.observe(item));
+    });
   }
 
 });
