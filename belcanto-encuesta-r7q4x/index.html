@@ -114,179 +114,190 @@
           <fieldset class="quiz-step is-active quiz-step-info" data-quiz-step data-step-title="Lee con atenci&oacute;n" data-question-type="info" aria-hidden="false">
             <legend class="quiz-step-title">Lee con atenci&oacute;n</legend>
             <div class="quiz-info-panel">
-              <p class="quiz-info-lead">Imagina un grupo de cantantes que interpreta m&uacute;sica en vivo con voces profesionales cl&aacute;sicas.</p>
-              <p class="quiz-step-text quiz-step-info-copy">Queremos conocer qu&eacute; tipo de canciones te resultan m&aacute;s atractivas para un grupo como ese.</p>
+              <p class="quiz-info-lead">Queremos conocer qu&eacute; tipo de experiencia musical te gustar&iacute;a vivir en un concierto de cantantes con voces cl&aacute;sicas y profesionales.</p>
+              <p class="quiz-step-text quiz-step-info-copy">Esta encuesta es breve y an&oacute;nima. No hay respuestas correctas o incorrectas; solo nos interesa tu opini&oacute;n honesta.</p>
             </div>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="1" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">1) &iquest;En cu&aacute;l de estas ocasiones te gustar&iacute;a m&aacute;s escuchar un grupo de cantantes clásicos en vivo?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Ocasiones preferidas">
-              <label class="quiz-option" for="ocasionBoda"><input id="ocasionBoda" type="checkbox" name="ocasion_boda" value="1"><span>Boda</span></label>
-              <label class="quiz-option" for="ocasionCena"><input id="ocasionCena" type="checkbox" name="ocasion_cena_formal" value="1"><span>Cena formal</span></label>
-              <label class="quiz-option" for="ocasionEmpresa"><input id="ocasionEmpresa" type="checkbox" name="ocasion_evento_empresa" value="1"><span>Evento de empresa</span></label>
-              <label class="quiz-option" for="ocasionTeatro"><input id="ocasionTeatro" type="checkbox" name="ocasion_teatro_concierto" value="1"><span>Teatro o concierto</span></label>
-              <label class="quiz-option" for="ocasionFamiliar"><input id="ocasionFamiliar" type="checkbox" name="ocasion_celebracion_familiar" value="1"><span>Celebraci&oacute;n familiar</span></label>
-              <label class="quiz-option" for="ocasionReligioso"><input id="ocasionReligioso" type="checkbox" name="ocasion_evento_religioso_conmemorativo" value="1"><span>Evento religioso o conmemorativo</span></label>
-              <label class="quiz-option" for="ocasionHotel"><input id="ocasionHotel" type="checkbox" name="ocasion_hotel_restaurante" value="1"><span>Hotel o restaurante</span></label>
-              <label class="quiz-option" for="ocasionNinguna"><input id="ocasionNinguna" type="checkbox" name="ocasion_ninguna" value="1"><span>Ninguna ocasi&oacute;n</span></label>
-              <label class="quiz-option" for="ocasionNoSeguro"><input id="ocasionNoSeguro" type="checkbox" name="ocasion_no_seguro" value="1"><span>No estoy seguro</span></label>
-              <label class="quiz-option" for="ocasionOtraRadio"><input id="ocasionOtraRadio" type="checkbox" name="ocasion_otra" value="1" data-requires-text="ocasionOtra"><span>Otra</span></label>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="1" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">1) &iquest;En cu&aacute;l de estas ocasiones te imaginas disfrutando m&aacute;s de un grupo de canto con voces profesionales?</legend>
+            <div class="quiz-options" role="radiogroup" aria-label="Ocasi&oacute;n principal">
+              <label class="quiz-option" for="ocasionBoda"><input id="ocasionBoda" type="radio" name="ocasion_principal" value="boda"><span>Boda</span></label>
+              <label class="quiz-option" for="ocasionCenaEspecial"><input id="ocasionCenaEspecial" type="radio" name="ocasion_principal" value="cena_especial"><span>Cena especial</span></label>
+              <label class="quiz-option" for="ocasionEventoEmpresa"><input id="ocasionEventoEmpresa" type="radio" name="ocasion_principal" value="evento_empresa"><span>Evento de empresa</span></label>
+              <label class="quiz-option" for="ocasionTeatroConcierto"><input id="ocasionTeatroConcierto" type="radio" name="ocasion_principal" value="teatro_concierto"><span>Teatro o concierto</span></label>
+              <label class="quiz-option" for="ocasionCelebracionFamiliar"><input id="ocasionCelebracionFamiliar" type="radio" name="ocasion_principal" value="celebracion_familiar"><span>Celebraci&oacute;n familiar</span></label>
+              <label class="quiz-option" for="ocasionEventoReligioso"><input id="ocasionEventoReligioso" type="radio" name="ocasion_principal" value="evento_religioso_conmemorativo"><span>Evento religioso o conmemorativo</span></label>
+              <label class="quiz-option" for="ocasionHotelRestaurante"><input id="ocasionHotelRestaurante" type="radio" name="ocasion_principal" value="evento_hotel_restaurante"><span>Evento en hotel o restaurante</span></label>
+              <label class="quiz-option" for="ocasionOtraRadio"><input id="ocasionOtraRadio" type="radio" name="ocasion_principal" value="otra" data-requires-text="ocasionOtra"><span>Otra ocasi&oacute;n</span></label>
             </div>
             <div class="quiz-conditional" hidden>
-              <label class="quiz-sr-only" for="ocasionOtra">Escribe otra ocasi&oacute;n</label>
+              <label class="quiz-sr-only" for="ocasionOtra">Escribe la otra ocasi&oacute;n</label>
               <input
                 id="ocasionOtra"
-                name="ocasion_otra_texto"
+                name="ocasion_principal_otra_texto"
                 type="text"
-                placeholder="Especifica"
+                placeholder="Especifica la ocasi&oacute;n"
                 autocomplete="off"
-                data-conditional-name="ocasion_otra"
-                data-conditional-value="1"
+                data-conditional-name="ocasion_principal"
+                data-conditional-value="otra"
                 data-required-message="Escribe la otra ocasi&oacute;n para continuar."
               >
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="2" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">2) &iquest;Qu&eacute; valoras m&aacute;s en una presentaci&oacute;n as&iacute;?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Valores principales">
-              <label class="quiz-option" for="valoraEmocione"><input id="valoraEmocione" type="checkbox" name="valora_emocion" value="1"><span>Que emocione</span></label>
-              <label class="quiz-option" for="valoraElegante"><input id="valoraElegante" type="checkbox" name="valora_elegancia" value="1"><span>Que suene elegante</span></label>
-              <label class="quiz-option" for="valoraVocal"><input id="valoraVocal" type="checkbox" name="valora_calidad_vocal" value="1"><span>Que tenga gran calidad vocal</span></label>
-              <label class="quiz-option" for="valoraConocidas"><input id="valoraConocidas" type="checkbox" name="valora_canciones_conocidas" value="1"><span>Que incluya canciones conocidas</span></label>
-              <label class="quiz-option" for="valoraOriginal"><input id="valoraOriginal" type="checkbox" name="valora_originalidad" value="1"><span>Que se sienta original</span></label>
-              <label class="quiz-option" for="valoraAmbiente"><input id="valoraAmbiente" type="checkbox" name="valora_acompanamiento_ambiente" value="1"><span>Que acompa&ntilde;e bien el ambiente</span></label>
-            </div>
-            <p class="field-error" data-question-error aria-live="polite"></p>
-          </fieldset>
-
-          <fieldset class="quiz-step" data-quiz-step data-step-title="3" data-question-type="scale" data-required-message="Selecciona un valor del 1 al 5." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">3) En general, &iquest;qu&eacute; tan conocidas deber&iacute;an ser las canciones?</legend>
-            <div class="quiz-scale-labels">
-              <span class="quiz-scale-label quiz-scale-label-start"><strong>1</strong> Pueden ser poco conocidas</span>
-              <span class="quiz-scale-label quiz-scale-label-end"><strong>5</strong> Deber&iacute;an ser muy conocidas por la mayor&iacute;a</span>
-            </div>
-            <div class="quiz-scale-options" role="radiogroup" aria-label="Escala de canciones conocidas">
-              <label class="quiz-scale-option" for="conocidas1"><input id="conocidas1" type="radio" name="canciones_conocidas" value="1"><span>1</span></label>
-              <label class="quiz-scale-option" for="conocidas2"><input id="conocidas2" type="radio" name="canciones_conocidas" value="2"><span>2</span></label>
-              <label class="quiz-scale-option" for="conocidas3"><input id="conocidas3" type="radio" name="canciones_conocidas" value="3"><span>3</span></label>
-              <label class="quiz-scale-option" for="conocidas4"><input id="conocidas4" type="radio" name="canciones_conocidas" value="4"><span>4</span></label>
-              <label class="quiz-scale-option" for="conocidas5"><input id="conocidas5" type="radio" name="canciones_conocidas" value="5"><span>5</span></label>
-            </div>
-            <p class="field-error" data-question-error aria-live="polite"></p>
-          </fieldset>
-
-          <fieldset class="quiz-step" data-quiz-step data-step-title="4" data-question-type="scale" data-required-message="Selecciona un valor del 1 al 5." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">4) &iquest;C&oacute;mo te gustar&iacute;a que sonara, en general, este tipo de grupo?</legend>
-            <div class="quiz-scale-labels">
-              <span class="quiz-scale-label quiz-scale-label-start"><strong>1</strong> M&aacute;s cercano y relajado</span>
-              <span class="quiz-scale-label quiz-scale-label-end"><strong>5</strong> M&aacute;s formal y elegante</span>
-            </div>
-            <div class="quiz-scale-options" role="radiogroup" aria-label="Escala de estilo general">
-              <label class="quiz-scale-option" for="sonido1"><input id="sonido1" type="radio" name="estilo_general" value="1"><span>1</span></label>
-              <label class="quiz-scale-option" for="sonido2"><input id="sonido2" type="radio" name="estilo_general" value="2"><span>2</span></label>
-              <label class="quiz-scale-option" for="sonido3"><input id="sonido3" type="radio" name="estilo_general" value="3"><span>3</span></label>
-              <label class="quiz-scale-option" for="sonido4"><input id="sonido4" type="radio" name="estilo_general" value="4"><span>4</span></label>
-              <label class="quiz-scale-option" for="sonido5"><input id="sonido5" type="radio" name="estilo_general" value="5"><span>5</span></label>
-            </div>
-            <p class="field-error" data-question-error aria-live="polite"></p>
-          </fieldset>
-
-          <fieldset class="quiz-step" data-quiz-step data-step-title="5" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">5) &iquest;Cu&aacute;l de estos estilos te llama m&aacute;s la atenci&oacute;n para un grupo as&iacute;?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Estilo preferido">
-              <label class="quiz-option" for="estiloRomanticas"><input id="estiloRomanticas" type="checkbox" name="estilo_romanticas_conocidas" value="1"><span>Canciones rom&aacute;nticas conocidas</span></label>
-              <label class="quiz-option" for="estiloBoleros"><input id="estiloBoleros" type="checkbox" name="estilo_baladas_boleros" value="1"><span>Baladas y boleros</span></label>
-              <label class="quiz-option" for="estiloMusicales"><input id="estiloMusicales" type="checkbox" name="estilo_peliculas_musicales" value="1"><span>Canciones de pel&iacute;culas o musicales</span></label>
-              <label class="quiz-option" for="estiloClasico"><input id="estiloClasico" type="checkbox" name="estilo_formal_clasico" value="1"><span>Canciones m&aacute;s formales o de estilo cl&aacute;sico</span></label>
-              <label class="quiz-option" for="estiloMezcla"><input id="estiloMezcla" type="checkbox" name="estilo_mezcla_estilos" value="1"><span>Una mezcla de varias de las anteriores</span></label>
-            </div>
-            <p class="field-error" data-question-error aria-live="polite"></p>
-          </fieldset>
-
-          <fieldset class="quiz-step" data-quiz-step data-step-title="6" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">6) &iquest;Qu&eacute; combinaci&oacute;n te gustar&iacute;a m&aacute;s?</legend>
-            <div class="quiz-options" role="radiogroup" aria-label="Combinaci&oacute;n musical">
-              <label class="quiz-option" for="combo1"><input id="combo1" type="radio" name="combinacion_preferida" value="casi_todo_conocidas_con_1_2_clasicas"><span>Casi todo canciones conocidas y 1 o 2 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo2"><input id="combo2" type="radio" name="combinacion_preferida" value="seis_siete_conocidas_y_tres_cuatro_clasicas"><span>Unas 6 o 7 canciones conocidas y 3 o 4 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo3"><input id="combo3" type="radio" name="combinacion_preferida" value="mitad_conocidas_mitad_clasicas"><span>Mitad canciones conocidas y mitad m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo4"><input id="combo4" type="radio" name="combinacion_preferida" value="tres_cuatro_conocidas_y_seis_siete_clasicas"><span>Unas 3 o 4 canciones conocidas y 6 o 7 m&aacute;s cl&aacute;sicas o elegantes</span></label>
-              <label class="quiz-option" for="combo5"><input id="combo5" type="radio" name="combinacion_preferida" value="una_dos_conocidas_y_casi_todas_clasicas"><span>1 o 2 canciones conocidas y casi todas las dem&aacute;s m&aacute;s cl&aacute;sicas o elegantes</span></label>
-            </div>
-            <p class="field-error" data-question-error aria-live="polite"></p>
-          </fieldset>
-
-          <fieldset class="quiz-step" data-quiz-step data-step-title="7" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">7) &iquest;Qu&eacute; idiomas te resultan m&aacute;s atractivos en las canciones?</legend>
-            <div class="quiz-options" role="radiogroup" aria-label="Idiomas preferidos">
-              <label class="quiz-option" for="idiomaSoloEs"><input id="idiomaSoloEs" type="radio" name="idioma_preferido" value="solo_espanol"><span>Solo espa&ntilde;ol</span></label>
-              <label class="quiz-option" for="idiomaMayorEs"><input id="idiomaMayorEs" type="radio" name="idioma_preferido" value="mayormente_espanol_con_otros"><span>Mayormente espa&ntilde;ol con algunas en otros idiomas</span></label>
-              <label class="quiz-option" for="idiomaEsIt"><input id="idiomaEsIt" type="radio" name="idioma_preferido" value="espanol_italiano"><span>Espa&ntilde;ol e italiano</span></label>
-              <label class="quiz-option" for="idiomaEsEn"><input id="idiomaEsEn" type="radio" name="idioma_preferido" value="espanol_ingles"><span>Espa&ntilde;ol e ingl&eacute;s</span></label>
-              <label class="quiz-option" for="idiomaMezcla"><input id="idiomaMezcla" type="radio" name="idioma_preferido" value="mezcla_varios_idiomas"><span>Mezcla de varios idiomas</span></label>
-              <label class="quiz-option" for="idiomaIndiferente"><input id="idiomaIndiferente" type="radio" name="idioma_preferido" value="indiferente"><span>Me es indiferente</span></label>
-              <label class="quiz-option" for="idiomaOtraRadio"><input id="idiomaOtraRadio" type="radio" name="idioma_preferido" value="otro" data-requires-text="idiomaOtra"><span>Otro</span></label>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="2" data-question-type="multi-limit" data-min-select="1" data-max-select="3" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 3 opciones." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">2) Pensando en ese tipo de evento, &iquest;qu&eacute; te gustar&iacute;a que te dejara una presentaci&oacute;n as&iacute;?</legend>
+            <p class="quiz-help-text">Puedes seleccionar hasta 3 opciones.</p>
+            <div class="quiz-options" role="group" aria-label="Resultado esperado de la presentaci&oacute;n">
+              <label class="quiz-option" for="beneficioRecuerdoBonito"><input id="beneficioRecuerdoBonito" type="checkbox" name="beneficio_recuerdo_bonito" value="1"><span>Un recuerdo bonito del momento</span></label>
+              <label class="quiz-option" for="beneficioAdmiraVocal"><input id="beneficioAdmiraVocal" type="checkbox" name="beneficio_admiracion_calidad_vocal" value="1"><span>Admiraci&oacute;n por la calidad vocal</span></label>
+              <label class="quiz-option" for="beneficioReconociCanciones"><input id="beneficioReconociCanciones" type="checkbox" name="beneficio_canciones_reconocidas" value="1"><span>Canciones que reconoc&iacute; y que me gustan</span></label>
+              <label class="quiz-option" for="beneficioAmbienteAgradable"><input id="beneficioAmbienteAgradable" type="checkbox" name="beneficio_ambiente_agradable" value="1"><span>Un ambiente agradable durante el evento</span></label>
+              <label class="quiz-option" for="beneficioVivirEspecial"><input id="beneficioVivirEspecial" type="checkbox" name="beneficio_sensacion_especial" value="1"><span>La sensaci&oacute;n de haber vivido algo especial</span></label>
+              <label class="quiz-option" for="beneficioAlgoDiferente"><input id="beneficioAlgoDiferente" type="checkbox" name="beneficio_algo_diferente" value="1"><span>Algo diferente a lo que normalmente se escucha en ese tipo de evento</span></label>
+              <label class="quiz-option" for="beneficioOtro"><input id="beneficioOtro" type="checkbox" name="beneficio_otro" value="1" data-requires-text="beneficioOtroTexto"><span>Otro</span></label>
             </div>
             <div class="quiz-conditional" hidden>
-              <label class="quiz-sr-only" for="idiomaOtra">Escribe otro idioma</label>
+              <label class="quiz-sr-only" for="beneficioOtroTexto">Escribe otro resultado esperado</label>
               <input
-                id="idiomaOtra"
-                name="idioma_otro_texto"
+                id="beneficioOtroTexto"
+                name="beneficio_otro_texto"
                 type="text"
                 placeholder="Especifica"
                 autocomplete="off"
-                data-conditional-name="idioma_preferido"
-                data-conditional-value="otro"
-                data-required-message="Escribe el otro idioma para continuar."
+                data-conditional-name="beneficio_otro"
+                data-conditional-value="1"
+                data-required-message="Escribe el otro resultado para continuar."
               >
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="8" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
-            <legend class="quiz-step-title">8) &iquest;Qu&eacute; emoci&oacute;n te gustar&iacute;a sentir m&aacute;s en las canciones?</legend>
-            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
-            <div class="quiz-options" role="group" aria-label="Emoci&oacute;n principal">
-              <label class="quiz-option" for="emocionRomance"><input id="emocionRomance" type="checkbox" name="emocion_romance" value="1"><span>Romance</span></label>
-              <label class="quiz-option" for="emocionNostalgia"><input id="emocionNostalgia" type="checkbox" name="emocion_nostalgia" value="1"><span>Nostalgia</span></label>
-              <label class="quiz-option" for="emocionInspiracion"><input id="emocionInspiracion" type="checkbox" name="emocion_inspiracion" value="1"><span>Inspiraci&oacute;n</span></label>
-              <label class="quiz-option" for="emocionSolemnidad"><input id="emocionSolemnidad" type="checkbox" name="emocion_solemnidad" value="1"><span>Solemnidad</span></label>
-              <label class="quiz-option" for="emocionAlegria"><input id="emocionAlegria" type="checkbox" name="emocion_alegria" value="1"><span>Alegr&iacute;a</span></label>
-              <label class="quiz-option" for="emocionEquilibrio"><input id="emocionEquilibrio" type="checkbox" name="emocion_equilibrio_varias" value="1"><span>Equilibrio entre varias</span></label>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="3" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">3) &iquest;C&oacute;mo te gustar&iacute;a que se sintiera esa presentaci&oacute;n?</legend>
+            <div class="quiz-options" role="radiogroup" aria-label="Tono de la presentaci&oacute;n">
+              <label class="quiz-option" for="tonoPresentacion1"><input id="tonoPresentacion1" type="radio" name="tono_presentacion" value="muy_relajada_informal"><span>Muy relajada e informal, como algo que fluye con el ambiente.</span></label>
+              <label class="quiz-option" for="tonoPresentacion2"><input id="tonoPresentacion2" type="radio" name="tono_presentacion" value="mayormente_relajada_con_momentos_de_atencion"><span>Mayormente relajada, pero con momentos que captan la atenci&oacute;n.</span></label>
+              <label class="quiz-option" for="tonoPresentacion3"><input id="tonoPresentacion3" type="radio" name="tono_presentacion" value="equilibrio_formal_cercano"><span>Un equilibrio entre lo formal y lo cercano.</span></label>
+              <label class="quiz-option" for="tonoPresentacion4"><input id="tonoPresentacion4" type="radio" name="tono_presentacion" value="mayormente_elegante_con_calidez"><span>Mayormente elegante y cuidada, con un toque de calidez.</span></label>
+              <label class="quiz-option" for="tonoPresentacion5"><input id="tonoPresentacion5" type="radio" name="tono_presentacion" value="muy_elegante_formal"><span>Muy elegante y formal, como una experiencia de alto nivel.</span></label>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="9" data-question-type="optional-text" aria-hidden="true" hidden>
-            <legend class="quiz-step-title">9) Si se te ocurre alguna, escribe hasta 3 canciones que te gustar&iacute;a escuchar en un grupo as&iacute;.</legend>
-            <p class="quiz-help-text">Si no recuerdas t&iacute;tulos, puedes dejar esta pregunta en blanco.</p>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="4" data-question-type="multi-limit" data-min-select="1" data-max-select="2" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 2 opciones." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">4) Pensando en el repertorio base de un grupo as&iacute;, &iquest;qu&eacute; tipo de canciones te gustar&iacute;a que no faltaran?</legend>
+            <p class="quiz-help-text">Puedes seleccionar hasta 2 opciones.</p>
+            <div class="quiz-options" role="group" aria-label="L&iacute;neas musicales del repertorio base">
+              <label class="quiz-option" for="repertorioBaladasBoleros"><input id="repertorioBaladasBoleros" type="checkbox" name="repertorio_baladas_boleros_romanticos" value="1"><span>Baladas y boleros rom&aacute;nticos</span></label>
+              <label class="quiz-option" for="repertorioPeliculasMusicales"><input id="repertorioPeliculasMusicales" type="checkbox" name="repertorio_peliculas_musicales" value="1"><span>Canciones de pel&iacute;culas o musicales</span></label>
+              <label class="quiz-option" for="repertorioOperaClasica"><input id="repertorioOperaClasica" type="checkbox" name="repertorio_opera_musica_clasica" value="1"><span>&Oacute;pera y m&uacute;sica cl&aacute;sica</span></label>
+              <label class="quiz-option" for="repertorioSolemnes"><input id="repertorioSolemnes" type="checkbox" name="repertorio_canciones_solemnes" value="1"><span>Canciones solemnes o propias de ocasiones especiales</span></label>
+              <label class="quiz-option" for="repertorioOtro"><input id="repertorioOtro" type="checkbox" name="repertorio_otro" value="1" data-requires-text="repertorioOtroTexto"><span>Otro</span></label>
+            </div>
+            <div class="quiz-conditional" hidden>
+              <label class="quiz-sr-only" for="repertorioOtroTexto">Escribe otro tipo de canciones</label>
+              <input
+                id="repertorioOtroTexto"
+                name="repertorio_otro_texto"
+                type="text"
+                placeholder="Especifica"
+                autocomplete="off"
+                data-conditional-name="repertorio_otro"
+                data-conditional-value="1"
+                data-required-message="Escribe el otro tipo de canciones para continuar."
+              >
+            </div>
+            <p class="field-error" data-question-error aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-quiz-step data-step-title="5" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">5) Si en una presentaci&oacute;n se cantaran 10 canciones, &iquest;cu&aacute;ntas te gustar&iacute;a reconocer apenas empiecen?</legend>
+            <div class="quiz-options" role="radiogroup" aria-label="Cantidad de canciones reconocidas">
+              <label class="quiz-option" for="familiaridad910"><input id="familiaridad910" type="radio" name="cantidad_canciones_reconocidas" value="9_10"><span>9 o 10</span></label>
+              <label class="quiz-option" for="familiaridad78"><input id="familiaridad78" type="radio" name="cantidad_canciones_reconocidas" value="7_8"><span>7 u 8</span></label>
+              <label class="quiz-option" for="familiaridad56"><input id="familiaridad56" type="radio" name="cantidad_canciones_reconocidas" value="5_6"><span>5 o 6</span></label>
+              <label class="quiz-option" for="familiaridad34"><input id="familiaridad34" type="radio" name="cantidad_canciones_reconocidas" value="3_4"><span>3 o 4</span></label>
+              <label class="quiz-option" for="familiaridad12"><input id="familiaridad12" type="radio" name="cantidad_canciones_reconocidas" value="1_2"><span>1 o 2</span></label>
+            </div>
+            <p class="field-error" data-question-error aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-quiz-step data-step-title="6" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">6) Si tuvieras que elegir una sola cosa, &iquest;qu&eacute; papel preferir&iacute;as que tuviera la m&uacute;sica durante el evento?</legend>
+            <div class="quiz-options" role="radiogroup" aria-label="Papel de la m&uacute;sica durante el evento">
+              <label class="quiz-option" for="papelProtagonista"><input id="papelProtagonista" type="radio" name="papel_musica_evento" value="protagonista"><span>Que sea protagonista y capte la atenci&oacute;n de todos</span></label>
+              <label class="quiz-option" for="papelAcompanamiento"><input id="papelAcompanamiento" type="radio" name="papel_musica_evento" value="acompanamiento"><span>Que acompa&ntilde;e bien mientras la gente convive y disfruta</span></label>
+            </div>
+            <p class="field-error" data-question-error aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-quiz-step data-step-title="7" data-question-type="single" data-required-message="Selecciona una opci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">7) &iquest;C&oacute;mo te sientes con que algunas canciones sean en otro idioma diferente al espa&ntilde;ol?</legend>
+            <div class="quiz-options" role="radiogroup" aria-label="Apertura a canciones en otros idiomas">
+              <label class="quiz-option" for="idiomaApertura1"><input id="idiomaApertura1" type="radio" name="apertura_idiomas" value="me_gusta_aunque_no_entienda"><span>Me gusta, aunque no entienda el idioma</span></label>
+              <label class="quiz-option" for="idiomaApertura2"><input id="idiomaApertura2" type="radio" name="apertura_idiomas" value="me_gusta_si_conozco_o_entiendo"><span>Me gusta solo si conozco la canci&oacute;n o entiendo el idioma</span></label>
+              <label class="quiz-option" for="idiomaApertura3"><input id="idiomaApertura3" type="radio" name="apertura_idiomas" value="prefiero_mayoria_espanol"><span>Est&aacute; bien, pero prefiero que la mayor&iacute;a sean en espa&ntilde;ol</span></label>
+              <label class="quiz-option" for="idiomaApertura4"><input id="idiomaApertura4" type="radio" name="apertura_idiomas" value="prefiero_todo_espanol"><span>Prefiero que todo o casi todo sea en espa&ntilde;ol</span></label>
+              <label class="quiz-option" for="idiomaApertura5"><input id="idiomaApertura5" type="radio" name="apertura_idiomas" value="me_da_igual_si_suena_bien"><span>Me da igual el idioma, siempre y cuando suene bien</span></label>
+            </div>
+            <p class="field-error" data-question-error aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-quiz-step data-step-title="8" data-question-type="multi-limit" data-min-select="1" data-max-select="3" data-required-message="Selecciona al menos una opci&oacute;n para continuar." data-max-message="Puedes seleccionar hasta 3 opciones." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">8) &iquest;Qu&eacute; har&iacute;a que disfrutaras menos una presentaci&oacute;n as&iacute;?</legend>
+            <p class="quiz-help-text">Puedes seleccionar hasta 3 opciones.</p>
+            <div class="quiz-options" role="group" aria-label="Factores que reducen el disfrute">
+              <label class="quiz-option" for="rechazoNoReconozca"><input id="rechazoNoReconozca" type="checkbox" name="rechazo_no_reconozca_canciones" value="1"><span>Que casi no reconozca ninguna canci&oacute;n</span></label>
+              <label class="quiz-option" for="rechazoSerioDistante"><input id="rechazoSerioDistante" type="checkbox" name="rechazo_demasiado_serio_distante" value="1"><span>Que todo suene demasiado serio o distante</span></label>
+              <label class="quiz-option" for="rechazoComunPredecible"><input id="rechazoComunPredecible" type="checkbox" name="rechazo_demasiado_comun_predecible" value="1"><span>Que todo suene demasiado com&uacute;n o predecible</span></label>
+              <label class="quiz-option" for="rechazoLentaAburrida"><input id="rechazoLentaAburrida" type="checkbox" name="rechazo_lenta_aburrida" value="1"><span>Que se sienta lenta o aburrida</span></label>
+              <label class="quiz-option" for="rechazoNoEmocion"><input id="rechazoNoEmocion" type="checkbox" name="rechazo_no_transmita_emocion" value="1"><span>Que no transmita emoci&oacute;n</span></label>
+              <label class="quiz-option" for="rechazoNoEncaje"><input id="rechazoNoEncaje" type="checkbox" name="rechazo_no_encaje_evento" value="1"><span>Que no encaje con el tipo de evento</span></label>
+              <label class="quiz-option" for="rechazoOtro"><input id="rechazoOtro" type="checkbox" name="rechazo_otro" value="1" data-requires-text="rechazoOtroTexto"><span>Otro</span></label>
+            </div>
+            <div class="quiz-conditional" hidden>
+              <label class="quiz-sr-only" for="rechazoOtroTexto">Escribe otro factor</label>
+              <input
+                id="rechazoOtroTexto"
+                name="rechazo_otro_texto"
+                type="text"
+                placeholder="Especifica"
+                autocomplete="off"
+                data-conditional-name="rechazo_otro"
+                data-conditional-value="1"
+                data-required-message="Escribe el otro factor para continuar."
+              >
+            </div>
+            <p class="field-error" data-question-error aria-live="polite"></p>
+          </fieldset>
+
+          <fieldset class="quiz-step" data-quiz-step data-step-title="9" data-question-type="text" data-required-message="Escribe al menos una canci&oacute;n para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">9) Escribe hasta 5 canciones que te gustar&iacute;a escuchar en una presentaci&oacute;n as&iacute;.</legend>
+            <p class="quiz-help-text">Si no recuerdas t&iacute;tulos exactos, puedes escribir el nombre del artista o describir el tipo de canci&oacute;n.</p>
             <div class="booking-field">
-              <label class="quiz-sr-only" for="cancionesDeseadas">Canciones que te gustar&iacute;a escuchar</label>
+              <label class="quiz-sr-only" for="cancionesReferencia">Canciones que te gustar&iacute;a escuchar</label>
               <textarea
-                id="cancionesDeseadas"
-                name="canciones_deseadas"
+                id="cancionesReferencia"
+                name="canciones_referencia"
                 rows="4"
-                placeholder="Ejemplo: canci&oacute;n 1, canci&oacute;n 2, canci&oacute;n 3"
+                placeholder="Ejemplo: Canci&oacute;n 1, Canci&oacute;n 2, Canci&oacute;n 3..."
               ></textarea>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
           </fieldset>
 
-          <fieldset class="quiz-step" data-quiz-step data-step-title="10" data-question-type="optional-text" aria-hidden="true" hidden>
-            <legend class="quiz-step-title">10) Si se te ocurre alguno, escribe hasta 3 cantantes, grupos o estilos musicales que te gusten para algo as&iacute;.</legend>
-            <p class="quiz-help-text">Si no est&aacute;s seguro, puedes dejar esta pregunta en blanco.</p>
+          <fieldset class="quiz-step" data-quiz-step data-step-title="10" data-question-type="text" data-required-message="Escribe al menos un referente para continuar." aria-hidden="true" hidden>
+            <legend class="quiz-step-title">10) &iquest;Hay alg&uacute;n cantante, grupo o estilo musical que te gustar&iacute;a que sirviera de referencia para esta presentaci&oacute;n?</legend>
             <div class="booking-field">
-              <label class="quiz-sr-only" for="referentesDeseados">Cantantes, grupos o estilos que prefieres</label>
+              <label class="quiz-sr-only" for="referentesEstilo">Cantantes, grupos o estilos de referencia</label>
               <textarea
-                id="referentesDeseados"
-                name="referentes_deseados"
+                id="referentesEstilo"
+                name="referentes_estilo"
                 rows="4"
-                placeholder="Ejemplo: cantante 1, grupo 2, estilo 3"
+                placeholder="Ejemplo: artista, grupo o estilo musical"
               ></textarea>
             </div>
             <p class="field-error" data-question-error aria-live="polite"></p>
