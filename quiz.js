@@ -41,8 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const introTransitionDuration = prefersReducedMotion ? 0 : 220;
   const shellEnterDuration = prefersReducedMotion ? 0 : 320;
   const stepCount = quizSteps.length;
-  const firstQuestionStep = quizSteps.find((step) => step.dataset.stepTitle === "1") || quizSteps[1] || null;
-  const noOccasionOption = quizForm.querySelector("#ocasionNinguna");
   let currentStep = 0;
   let quizStarted = !quizShell;
   let isTransitioning = false;
@@ -367,34 +365,6 @@ document.addEventListener("DOMContentLoaded", () => {
     nextButton.textContent = "Siguiente pregunta";
   };
 
-  const isEarlyExitSelected = () => {
-    return Boolean(
-      noOccasionOption &&
-      noOccasionOption instanceof HTMLInputElement &&
-      noOccasionOption.checked
-    );
-  };
-
-  const isOnFirstQuestionStep = () => {
-    if (!firstQuestionStep) {
-      return false;
-    }
-    return quizSteps[currentStep] === firstQuestionStep;
-  };
-
-  const submitQuiz = () => {
-    if (isTransitioning) {
-      return;
-    }
-
-    if (typeof quizForm.requestSubmit === "function") {
-      quizForm.requestSubmit();
-      return;
-    }
-
-    quizForm.submit();
-  };
-
   const updateStepState = (options = {}) => {
     const { announce = true, focusFirstField = false } = options;
 
@@ -680,27 +650,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const step = target.closest("[data-quiz-step]");
 
-    if (
-      step &&
-      target instanceof HTMLInputElement &&
-      target.type === "checkbox" &&
-      firstQuestionStep &&
-      step === firstQuestionStep
-    ) {
-      const occasionInputs = Array.from(step.querySelectorAll('input[type="checkbox"]'));
-      const noOccasion = noOccasionOption && step.contains(noOccasionOption) ? noOccasionOption : null;
-
-      if (target.id === "ocasionNinguna" && target.checked) {
-        occasionInputs.forEach((input) => {
-          if (input !== target) {
-            input.checked = false;
-          }
-        });
-      } else if (target.checked && noOccasion && noOccasion.checked) {
-        noOccasion.checked = false;
-      }
-    }
-
     if (step && target.type === "checkbox" && step.dataset.questionType === "multi-limit") {
       const maxSelect = Number(step.dataset.maxSelect || 2);
       const checked = Array.from(step.querySelectorAll("input[type='checkbox']:checked"));
@@ -723,18 +672,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     scheduleDraftSave();
-
-    if (
-      step &&
-      target instanceof HTMLInputElement &&
-      target.type === "checkbox" &&
-      target.id === "ocasionNinguna" &&
-      target.checked &&
-      isOnFirstQuestionStep() &&
-      isEarlyExitSelected()
-    ) {
-      submitQuiz();
-    }
   });
 
   if (nextButton) {
@@ -750,11 +687,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!isStepValid) {
-        return;
-      }
-
-      if (isOnFirstQuestionStep() && isEarlyExitSelected()) {
-        submitQuiz();
         return;
       }
 
@@ -823,41 +755,25 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    const earlyExitSubmission = isEarlyExitSelected();
-
-    if (!earlyExitSubmission && currentStep !== stepCount - 1) {
+    if (currentStep !== stepCount - 1) {
       event.preventDefault();
       return;
     }
 
-    if (earlyExitSubmission) {
-      if (firstQuestionStep) {
-        const firstStepValid = validateStep(firstQuestionStep, {
-          focusFirstInvalid: true,
-          silent: false
-        });
+    const currentStepValid = validateStep(quizSteps[currentStep], {
+      focusFirstInvalid: true,
+      silent: false
+    });
 
-        if (!firstStepValid) {
-          event.preventDefault();
-          return;
-        }
-      }
-    } else {
-      const currentStepValid = validateStep(quizSteps[currentStep], {
-        focusFirstInvalid: true,
-        silent: false
-      });
+    if (!currentStepValid) {
+      event.preventDefault();
+      return;
+    }
 
-      if (!currentStepValid) {
-        event.preventDefault();
-        return;
-      }
-
-      const allStepsValid = validateAllStepsBeforeSubmit();
-      if (!allStepsValid) {
-        event.preventDefault();
-        return;
-      }
+    const allStepsValid = validateAllStepsBeforeSubmit();
+    if (!allStepsValid) {
+      event.preventDefault();
+      return;
     }
 
     isSubmitting = true;
