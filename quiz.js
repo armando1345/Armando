@@ -30,6 +30,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const referrerUrlField = quizForm.querySelector("#referrerUrl");
   const startedAtField = quizForm.querySelector("#startedAt");
   const submittedAtField = quizForm.querySelector("#submittedAt");
+  const answerQ1Field = quizForm.querySelector("#answerQ1OcasionPrincipal");
+  const answerQ2Field = quizForm.querySelector("#answerQ2BeneficiosClave");
+  const answerQ3Field = quizForm.querySelector("#answerQ3TonoPresentacion");
+  const answerQ4Field = quizForm.querySelector("#answerQ4RepertorioBase");
+  const answerQ5Field = quizForm.querySelector("#answerQ5CancionesReconocidas");
+  const answerQ6Field = quizForm.querySelector("#answerQ6PapelMusica");
+  const answerQ7Field = quizForm.querySelector("#answerQ7AperturaIdiomas");
+  const answerQ8Field = quizForm.querySelector("#answerQ8FactoresRechazo");
+  const answerQ9Field = quizForm.querySelector("#answerQ9CancionesReferencia");
+  const answerQ10Field = quizForm.querySelector("#answerQ10ReferentesEstilo");
+  const answersJsonField = quizForm.querySelector("#answersJson");
+  const ocasionOtraField = quizForm.querySelector("#ocasionOtra");
+  const beneficioOtroTextoField = quizForm.querySelector("#beneficioOtroTexto");
+  const repertorioOtroTextoField = quizForm.querySelector("#repertorioOtroTexto");
+  const rechazoOtroTextoField = quizForm.querySelector("#rechazoOtroTexto");
+  const cancionesReferenciaField = quizForm.querySelector("#cancionesReferencia");
+  const referentesEstiloField = quizForm.querySelector("#referentesEstilo");
 
   const conditionalFields = Array.from(quizForm.querySelectorAll("[data-conditional-name]"));
   const persistableFields = Array.from(quizForm.querySelectorAll("input, textarea, select"))
@@ -47,6 +64,31 @@ document.addEventListener("DOMContentLoaded", () => {
   let isSubmitting = false;
   let draftSaveTimer = null;
   let lastSavedDraftPayload = "";
+  const questionTwoCheckboxNames = [
+    "beneficio_recuerdo_bonito",
+    "beneficio_admiracion_calidad_vocal",
+    "beneficio_canciones_reconocidas",
+    "beneficio_ambiente_agradable",
+    "beneficio_sensacion_especial",
+    "beneficio_algo_diferente",
+    "beneficio_otro"
+  ];
+  const questionFourCheckboxNames = [
+    "repertorio_baladas_boleros_romanticos",
+    "repertorio_peliculas_musicales",
+    "repertorio_opera_musica_clasica",
+    "repertorio_canciones_solemnes",
+    "repertorio_otro"
+  ];
+  const questionEightCheckboxNames = [
+    "rechazo_no_reconozca_canciones",
+    "rechazo_demasiado_serio_distante",
+    "rechazo_demasiado_comun_predecible",
+    "rechazo_lenta_aburrida",
+    "rechazo_no_transmita_emocion",
+    "rechazo_no_encaje_evento",
+    "rechazo_otro"
+  ];
 
   if (stepTotal) {
     stepTotal.textContent = `${stepCount}`;
@@ -96,6 +138,81 @@ document.addEventListener("DOMContentLoaded", () => {
     if (referrerUrlField) {
       referrerUrlField.value = document.referrer || "";
     }
+  };
+
+  const normalizeText = (value) => value.trim().replace(/\s+/g, " ");
+
+  const getCheckedRadioValue = (name) => {
+    const checked = quizForm.querySelector(`input[type="radio"][name="${name}"]:checked`);
+    return checked ? checked.value : "";
+  };
+
+  const getCheckedCheckboxNames = (names) => names.filter((name) => {
+    const checkbox = quizForm.querySelector(`input[type="checkbox"][name="${name}"]`);
+    return Boolean(checkbox && checkbox.checked);
+  });
+
+  const getConditionalValue = (field) => (field ? normalizeText(field.value) : "");
+
+  const toPipeSeparated = (values) => values.join("|");
+
+  const setHiddenValue = (field, value) => {
+    if (field) {
+      field.value = value;
+    }
+  };
+
+  const buildSubmissionSummary = () => {
+    const q1Value = getCheckedRadioValue("ocasion_principal");
+    const q1Other = getConditionalValue(ocasionOtraField);
+    const q1Answer = q1Value === "otra" && q1Other ? `otra:${q1Other}` : q1Value;
+
+    const q2Selections = getCheckedCheckboxNames(questionTwoCheckboxNames);
+    const q2Other = getConditionalValue(beneficioOtroTextoField);
+    if (q2Selections.includes("beneficio_otro") && q2Other) {
+      q2Selections.push(`beneficio_otro_texto:${q2Other}`);
+    }
+
+    const q4Selections = getCheckedCheckboxNames(questionFourCheckboxNames);
+    const q4Other = getConditionalValue(repertorioOtroTextoField);
+    if (q4Selections.includes("repertorio_otro") && q4Other) {
+      q4Selections.push(`repertorio_otro_texto:${q4Other}`);
+    }
+
+    const q8Selections = getCheckedCheckboxNames(questionEightCheckboxNames);
+    const q8Other = getConditionalValue(rechazoOtroTextoField);
+    if (q8Selections.includes("rechazo_otro") && q8Other) {
+      q8Selections.push(`rechazo_otro_texto:${q8Other}`);
+    }
+
+    return {
+      respuesta_q1_ocasion_principal: q1Answer,
+      respuesta_q2_beneficios_clave: toPipeSeparated(q2Selections),
+      respuesta_q3_tono_presentacion: getCheckedRadioValue("tono_presentacion"),
+      respuesta_q4_repertorio_base: toPipeSeparated(q4Selections),
+      respuesta_q5_canciones_reconocidas: getCheckedRadioValue("cantidad_canciones_reconocidas"),
+      respuesta_q6_papel_musica: getCheckedRadioValue("papel_musica_evento"),
+      respuesta_q7_apertura_idiomas: getCheckedRadioValue("apertura_idiomas"),
+      respuesta_q8_factores_rechazo: toPipeSeparated(q8Selections),
+      respuesta_q9_canciones_referencia: getConditionalValue(cancionesReferenciaField),
+      respuesta_q10_referentes_estilo: getConditionalValue(referentesEstiloField)
+    };
+  };
+
+  const syncSummaryFields = () => {
+    const summary = buildSubmissionSummary();
+
+    setHiddenValue(answerQ1Field, summary.respuesta_q1_ocasion_principal);
+    setHiddenValue(answerQ2Field, summary.respuesta_q2_beneficios_clave);
+    setHiddenValue(answerQ3Field, summary.respuesta_q3_tono_presentacion);
+    setHiddenValue(answerQ4Field, summary.respuesta_q4_repertorio_base);
+    setHiddenValue(answerQ5Field, summary.respuesta_q5_canciones_reconocidas);
+    setHiddenValue(answerQ6Field, summary.respuesta_q6_papel_musica);
+    setHiddenValue(answerQ7Field, summary.respuesta_q7_apertura_idiomas);
+    setHiddenValue(answerQ8Field, summary.respuesta_q8_factores_rechazo);
+    setHiddenValue(answerQ9Field, summary.respuesta_q9_canciones_referencia);
+    setHiddenValue(answerQ10Field, summary.respuesta_q10_referentes_estilo);
+    setHiddenValue(answersJsonField, JSON.stringify(summary));
   };
 
   const getStepTitle = (stepIndex) => {
@@ -180,6 +297,8 @@ document.addEventListener("DOMContentLoaded", () => {
         field.setAttribute("aria-invalid", "false");
       }
     });
+
+    syncSummaryFields();
   };
 
   const shouldUpdateConditionalFieldsFor = (target) => {
@@ -615,6 +734,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initializeAnalyticsFields();
   restoreDraft();
+  syncSummaryFields();
 
   quizForm.addEventListener("input", (event) => {
     const target = event.target;
@@ -640,6 +760,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     scheduleDraftSave();
+    syncSummaryFields();
   });
 
   quizForm.addEventListener("change", (event) => {
@@ -672,6 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     scheduleDraftSave();
+    syncSummaryFields();
   });
 
   if (nextButton) {
@@ -777,6 +899,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     isSubmitting = true;
+    syncSummaryFields();
     if (submittedAtField) {
       submittedAtField.value = new Date().toISOString();
     }
